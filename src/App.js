@@ -2,25 +2,30 @@ import React, { Component } from 'react';
 import axios from './axios'
 import './App.css';
 
+
 class App extends Component {
 
   state = {
-    name: [],
+    data: [],
     firstName: '',
     lastName: '',
-    bills: 0
+    money: 0
   }
 
   componentDidMount() {
     this.handleGet()
   }
 
+  componentDidUpdate(){
+    this.handleGet()
+  }
 
   handlePost = () => {
     let obj = {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
-      bills: this.state.bills,
+      money: this.state.money,
+
     }
 
     axios.post('/person.json', obj)
@@ -31,12 +36,11 @@ class App extends Component {
   handleGet = () => {
     axios.get('/person.json')
       .then(response => {
-        let names = []
+        let data = []
         for (let i in response.data) {
-          names.push(response.data[i].firstName)
-          this.setState({ name: names })
+          data.push(response.data[i])
+          this.setState({ data})
         }
-        console.log(names)
       }
       )
   }
@@ -51,9 +55,9 @@ class App extends Component {
       lastName: event.target.value
     })
   }
-  billsChangeHandler = (event) => {
+  moneyChangeHandler = (event) => {
     this.setState({
-      bills: event.target.value
+      money: event.target.value
     })
   }
 
@@ -62,17 +66,13 @@ class App extends Component {
       <div className="App">
         <div className={'container'}>
           <div>
+            <label>First Name</label>
+            <input type='text' placeholder='First Name' value={this.state.firstName} onChange={this.firstNameChangeHandler} />
+            <label>Last Name</label>
+            <input type='text' placeholder='Last Name' value={this.state.lastName} onChange={this.lastNameChangeHandler} />
             <div>
-              <label>First Name</label>
-              <input type='text' placeholder='First Name' value={this.state.firstName} onChange={this.firstNameChangeHandler} />
-            </div>
-            <div>
-              <label>Last Name</label>
-              <input type='text' placeholder='Last Name' value={this.state.lastName} onChange={this.lastNameChangeHandler} />
-            </div>
-            <div>
-              <label>Bills</label>
-              <input type='number' placeholder='Bills' value={this.state.bills} onChange={this.billsChangeHandler} />
+              <label>Money</label>
+              <input type='number' placeholder='Bills' value={this.state.money} onChange={this.moneyChangeHandler} />
             </div>
           </div>
           <button onClick={this.handlePost}>Post</button>
@@ -81,22 +81,43 @@ class App extends Component {
             <div>
               <label>First Person</label>
               <select>
-                {this.state.name.map((name, i) => {
-                  return <option key={i}>{name}</option>
+                {this.state.data.map((person, i) => {
+                  return <option key={i}>{person.firstName}</option>
                 })}
               </select>
               <input type='number' />
             </div>
+            <span>To</span>
             <div>
               <label>Second Person</label>
               <select>
-                {this.state.name.map((name, i) => {
-                  return <option key={i}>{name}</option>
+                {this.state.data.map((person, i) => {
+                  return <option key={i}>{person.firstName}</option>
                 })}
               </select>
             </div>
-            <button type='submit'>Send</button>
+            <button type='submit'>Update</button>
           </form>
+          <table >
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Money</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.state.data.map((person, i) => {
+                return <tr key={i}>
+                  <td >{i+1+'.'}</td>
+                  <td>{person.firstName} </td>
+                  <td>{person.lastName} </td>
+                  <td>{person.money + '$'} </td>
+                </tr>
+              })}
+            </tbody>
+          </table>
         </div>
       </div>
     );

@@ -1,16 +1,19 @@
 .App {
   text-align: center;
-  display: flex;
+  /* display: flex; */
   height: 100vh;
+  
 }
 
 .container {
+  border-radius: 5px;
   width: 500px;
   height: 500px;
   margin:auto;
-  display: flex;
+  /* display: flex; */
   border: 1px solid black;
   align-items: center;
   justify-content: center;
+  overflow: auto;
 }
 
