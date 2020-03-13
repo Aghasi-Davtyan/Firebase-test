@@ -11,7 +11,7 @@ class App extends Component {
   componentDidMount() {
     this.handleGet()
   }
-  
+
 
   handlePost = () => {
     let obj = {
@@ -20,23 +20,23 @@ class App extends Component {
       bills: 2430,
     }
 
-    axios.post('/person.json',obj)
-    .then(response=>console.log(response))
-    .catch(error=>console.log(error))
+    axios.post('/person.json', obj)
+      .then(response => console.log(response))
+      .catch(error => console.log(error))
   }
 
-    handleGet = () => {
+  handleGet = () => {
     axios.get('/person.json')
-    .then(response=>{
-      let names = []
-      for(let i in response.data){
-        names.push(response.data[i].firstName)
-        this.setState({name: names}) 
+      .then(response => {
+        let names = []
+        for (let i in response.data) {
+          names.push(response.data[i].firstName)
+          this.setState({ name: names })
+        }
+        console.log(names)
       }
-      console.log(names)
-   }
-    )
-    }
+      )
+  }
 
   render() {
     return (
@@ -48,19 +48,19 @@ class App extends Component {
             <div>
               <label>First Person</label>
               <select>
-              {this.state.name.map((name,i)=> {
-                return<option key={i}>{name}</option>
-              })}
-            </select>
+                {this.state.name.map((name, i) => {
+                  return <option key={i}>{name}</option>
+                })}
+              </select>
               <input type='number' />
             </div>
             <div>
               <label>Second Person</label>
               <select>
-              {this.state.name.map((name,i)=> {
-                return<option key={i}>{name}</option>
-              })}
-            </select>
+                {this.state.name.map((name, i) => {
+                  return <option key={i}>{name}</option>
+                })}
+              </select>
             </div>
             <button type='submit'>Send</button>
           </form>
