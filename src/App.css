@@ -1,3 +1,5 @@
+
+
 .App {
   text-align: center;
   display: flex;
@@ -7,13 +9,66 @@
 
 .container {
   border-radius: 5px;
-  width: 500px;
-  height: 500px;
+  width: 600px;
+  height: 700px;
   margin:auto;
   /* display: flex; */
   border: 1px solid black;
   align-items: center;
   justify-content: center;
   overflow: auto;
+}
+
+.cent {
+  margin: 10px auto;
+}
+
+input[type='text']:focus {
+  border: 1px solid green;
+  outline: none;
+  box-shadow: 0 0 5px green;
+}
+input[type='number']:focus {
+  border: 1px solid green;
+  outline: none;
+  box-shadow: 0 0 5px green;
+}
+
+input[type='text']{
+  border: 1px solid grey;
+  margin: 5px;
+  padding: 10px;
+}
+input[type='number']{
+  border: 1px solid grey;
+  margin: 5px;
+  padding: 10px;
+}
+
+button {
+  outline: none;
+  border-radius: 5px;
+  background-color: rgb(102, 98, 98);
+  border: none;
+  padding: 4px 10px;
+  margin: 5px;
+  cursor: pointer;
+  color: white;
+}
+
+button:active{
+  background-color:grey;
+}
+
+select {
+  padding: 8px;
+  border-radius: 2px;
+  outline: none;
+  margin: 10px 30px;
+}
+
+select:focus {
+  border: 1px solid green;
+  box-shadow: 0 0 5px green;
 }
 

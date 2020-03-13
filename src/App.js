@@ -9,7 +9,8 @@ class App extends Component {
     data: [],
     firstName: '',
     lastName: '',
-    money: 0
+    money: 0,
+    accountNumber: 0
   }
 
   componentDidMount() {
@@ -25,7 +26,7 @@ class App extends Component {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       money: this.state.money,
-
+      accountNumber: this.state.accountNumber + Math.floor(Math.random() * 10000000000000) + 1
     }
 
     axios.post('/person.json', obj)
@@ -39,7 +40,7 @@ class App extends Component {
         let data = []
         for (let i in response.data) {
           data.push(response.data[i])
-          this.setState({ data})
+          this.setState({ data })
         }
       }
       )
@@ -66,9 +67,9 @@ class App extends Component {
       <div className="App">
         <div className={'container'}>
           <div>
-            <label>First Name</label>
+            {/* <label>First Name:</label> */}
             <input type='text' placeholder='First Name' value={this.state.firstName} onChange={this.firstNameChangeHandler} />
-            <label>Last Name</label>
+            {/* <label>Last Name:</label> */}
             <input type='text' placeholder='Last Name' value={this.state.lastName} onChange={this.lastNameChangeHandler} />
             <div>
               <label>Money</label>
@@ -78,42 +79,42 @@ class App extends Component {
           <button onClick={this.handlePost}>Post</button>
           <button onClick={this.handleGet}>Get</button>
           <form className={'form'}>
-            <div>
-              <label>First Person</label>
-              <select>
-                {this.state.data.map((person, i) => {
-                  return <option key={i}>{person.firstName}</option>
-                })}
-              </select>
-              <input type='number' />
-            </div>
+            <div>Transfer</div>
+            <select>
+              {this.state.data.map((person) => {
+                return <option key={person.accountNumber}>{person.firstName}</option>
+              })}
+            </select>
             <span>To</span>
+            <select>
+              {this.state.data.map((person) => {
+                return <option key={person.accountNumber}>{person.firstName}</option>
+              })}
+            </select>
+            <div>Аmount of money</div>
             <div>
-              <label>Second Person</label>
-              <select>
-                {this.state.data.map((person, i) => {
-                  return <option key={i}>{person.firstName}</option>
-                })}
-              </select>
+              <input type='number' />
             </div>
             <button type='submit'>Update</button>
           </form>
-          <table >
+          <table className={'cent'}>
             <thead>
               <tr>
                 <th>#</th>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Money</th>
+                <th>Account Number</th>
               </tr>
             </thead>
             <tbody>
               {this.state.data.map((person, i) => {
-                return <tr key={i}>
-                  <td >{i+1+'.'}</td>
+                return <tr key={person.accountNumber}>
+                  <td >{i + 1 + '.'}</td>
                   <td>{person.firstName} </td>
                   <td>{person.lastName} </td>
                   <td>{person.money + '$'} </td>
+                  <td>{person.accountNumber} </td>
                 </tr>
               })}
             </tbody>
