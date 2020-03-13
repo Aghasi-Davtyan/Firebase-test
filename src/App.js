@@ -9,31 +9,9 @@ class App extends Component {
   }
 
   componentDidMount() {
-    axios.get('/person.json')
-      .then(response=>{
-        let names = []
-        for(let i in response.data){
-          names.push(response.data[i].firstName)
-          this.setState({name: names}) 
-        }
-        console.log(names)
-     }
-      )
+    this.handleGet()
   }
   
-  // componentDidUpdate() {
-    
-    // axios.get('/person.json')
-    //   .then(response=>{
-    //     let names = []
-    //     for(let i in response.data){
-    //       names.push(response.data[i].firstName)
-    //       this.setState({name: names}) 
-    //     }
-    //     console.log(names)
-    //  }
-    //   )
-  // }
 
   handlePost = () => {
     let obj = {
@@ -48,12 +26,16 @@ class App extends Component {
   }
 
     handleGet = () => {
-      axios.get('/person.json')
-      .then(response=>{
-        console.log(response.data)
-     }
-      )
-      .catch(error=>console.log(error))
+    axios.get('/person.json')
+    .then(response=>{
+      let names = []
+      for(let i in response.data){
+        names.push(response.data[i].firstName)
+        this.setState({name: names}) 
+      }
+      console.log(names)
+   }
+    )
     }
 
   render() {
