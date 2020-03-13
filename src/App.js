@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { Component } from 'react';
 import axios from './axios'
 import './App.css';
 
@@ -20,17 +20,19 @@ class App extends Component {
      }
       )
   }
+  
   // componentDidUpdate() {
-  //   axios.get('/person.json')
-  //     .then(response=>{
-  //       let names = []
-  //       for(let i in response.data){
-  //         names.push(response.data[i].firstName)
-  //         this.setState({name: names}) 
-  //       }
-  //       console.log(names)
-  //    }
-  //     )
+    
+    // axios.get('/person.json')
+    //   .then(response=>{
+    //     let names = []
+    //     for(let i in response.data){
+    //       names.push(response.data[i].firstName)
+    //       this.setState({name: names}) 
+    //     }
+    //     console.log(names)
+    //  }
+    //   )
   // }
 
   handlePost = () => {
@@ -59,13 +61,13 @@ class App extends Component {
       <div className="App">
         <div className={'container'}>
           <button onClick={this.handlePost}>Post</button>
-          <form className={'form'}>
           <button onClick={this.handleGet}>Get</button>
+          <form className={'form'}>
             <div>
               <label>First Person</label>
               <select>
-              {this.state.name.map(name=> {
-                return<option>{name}</option>
+              {this.state.name.map((name,i)=> {
+                return<option key={i}>{name}</option>
               })}
             </select>
               <input type='number' />
@@ -73,8 +75,8 @@ class App extends Component {
             <div>
               <label>Second Person</label>
               <select>
-              {this.state.name.map(name=> {
-                return<option>{name}</option>
+              {this.state.name.map((name,i)=> {
+                return<option key={i}>{name}</option>
               })}
             </select>
             </div>
