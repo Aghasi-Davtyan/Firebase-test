@@ -16,9 +16,9 @@ class App extends Component {
     this.handleGet()
   }
 
-  componentDidUpdate(){
-    this.handleGet()
-  }
+  // componentDidUpdate(){
+  //   this.handleGet()
+  // }
 
   handlePost = () => {
     let obj = {
