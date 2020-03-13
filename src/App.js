@@ -6,6 +6,9 @@ class App extends Component {
 
   state = {
     name: [],
+    firstName: '',
+    lastName: '',
+    bills: 0
   }
 
   componentDidMount() {
@@ -15,9 +18,9 @@ class App extends Component {
 
   handlePost = () => {
     let obj = {
-      firstName: 'Edo',
-      lastName: 'Sensai',
-      bills: 2430,
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      bills: this.state.bills,
     }
 
     axios.post('/person.json', obj)
@@ -38,10 +41,40 @@ class App extends Component {
       )
   }
 
+  firstNameChangeHandler = (event) => {
+    this.setState({
+      firstName: event.target.value
+    })
+  }
+  lastNameChangeHandler = (event) => {
+    this.setState({
+      lastName: event.target.value
+    })
+  }
+  billsChangeHandler = (event) => {
+    this.setState({
+      bills: event.target.value
+    })
+  }
+
   render() {
     return (
       <div className="App">
         <div className={'container'}>
+          <div>
+            <div>
+              <label>First Name</label>
+              <input type='text' placeholder='First Name' value={this.state.firstName} onChange={this.firstNameChangeHandler}/>
+            </div>
+            <div>
+            <label>Last Name</label>
+              <input type='text' placeholder='Last Name' value={this.state.lastName} onChange={this.lastNameChangeHandler} />
+            </div>
+            <div>
+            <label>Bills</label>
+              <input type='number' placeholder='Bills' value={this.state.bills} onChange={this.billsChangeHandler}/>
+            </div>
+          </div>
           <button onClick={this.handlePost}>Post</button>
           <button onClick={this.handleGet}>Get</button>
           <form className={'form'}>
