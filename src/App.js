@@ -73,7 +73,7 @@ class App extends Component {
   }
 
   callFirst = (e) => {
-    console.log('first', e.target)
+    console.log('first',e.target.children[1].id)
     this.setState({
       firstPersonMoney: parseInt(e.target.value)
     })
