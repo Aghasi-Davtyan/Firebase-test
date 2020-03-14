@@ -90,7 +90,12 @@ class App extends Component {
   }
 
   calcTransfer = () =>{
-    console.log(this.state.firstPersonMoney - this.state.secondPersonMoney)
+  this.setState({
+    firstPersonMoney: this.state.firstPersonMoney - this.state.transferMoney,
+    secondPersonMoney: this.state.transferMoney + this.state.secondPersonMoney
+  }) 
+    console.log(this.state.firstPersonMoney)
+    console.log(this.state.secondPersonMoney)
   }
 
   render() {
@@ -128,7 +133,7 @@ class App extends Component {
             <div>
               <input type='number' onChange={this.transferMoneyChangeHandler}/>
             </div>
-            <button type='submit'>Update</button>
+            <button type='submit'  onClick={this.calcTransfer}>Update</button>
           </form>
           <button onClick={this.calcTransfer}>Minus</button>
           <table className={'cent'}>
