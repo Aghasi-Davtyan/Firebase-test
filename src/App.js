@@ -73,7 +73,7 @@ class App extends Component {
   }
 
   callFirst = (e) => {
-    console.log('first', parseInt(e.target.value))
+    console.log('first', e.target)
     this.setState({
       firstPersonMoney: parseInt(e.target.value)
     })
@@ -97,6 +97,10 @@ class App extends Component {
     console.log('Second Person', this.state.secondPersonMoney)
   }
 
+  geet = (e) => {
+    console.log(e.target)
+  }
+
   render() {
     return (
       <div className="App">
@@ -118,14 +122,14 @@ class App extends Component {
             <select onChange={this.callFirst}>
               <option></option>
               {this.state.data.map((person) => {
-                return <option key={person.id} value={person.money} label={person.firstName} />
+                return <option key={person.id} id={person.id} value={person.money} label={person.firstName} />
               })}
             </select>
             <span>To</span>
             <select onChange={this.callSecond}>
               <option></option>
               {this.state.data.map((person) => {
-                return <option key={person.id} label={person.firstName} value={person.money}/>
+                return <option key={person.id} id={person.id} label={person.firstName} value={person.money}/>
               })}
             </select>
             <div>Amount of money</div>
