@@ -12,7 +12,9 @@ class App extends Component {
     money: 0,
     accountNumber: 0,
     id: '',
-    transferMoney: 0
+    transferMoney: 0,
+    firstPersonMoney: 0,
+    secondPersonMoney: 0
   }
 
   componentDidMount() {
@@ -73,15 +75,23 @@ class App extends Component {
    callFirst = (e) => {
      // setSaveFirst(parseInt(selectFirstValue.value))
      console.log('first',parseInt(e.target.value))
+     this.setState({
+      firstPersonMoney: parseInt(e.target.value)
+     })
 
   }
 
   callSecond = (e) => {
     // setSaveSecond(parseInt(selectSecondValue.value))
     console.log('second',parseInt(e.target.value))
-
+    this.setState({
+      secondPersonMoney: parseInt(e.target.value)
+    })
   }
 
+  calcTransfer = () =>{
+    console.log(this.state.firstPersonMoney - this.state.secondPersonMoney)
+  }
 
   render() {
     return (
@@ -120,6 +130,7 @@ class App extends Component {
             </div>
             <button type='submit'>Update</button>
           </form>
+          <button onClick={this.calcTransfer}>Minus</button>
           <table className={'cent'}>
             <thead>
               <tr>
