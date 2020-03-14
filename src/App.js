@@ -73,7 +73,7 @@ class App extends Component {
   }
 
    callFirst = (e) => {
-     console.log('first',e.target.value)
+     console.log('first',parseInt(e.target.value))
      this.setState({
       firstPersonMoney: parseInt(e.target.value)
      })
@@ -81,7 +81,7 @@ class App extends Component {
   }
 
   callSecond = (e) => {
-    console.log('second',this.state.id)
+    console.log('second',parseInt(e.target.value))
     this.setState({
       secondPersonMoney: parseInt(e.target.value)
     })
@@ -128,7 +128,7 @@ class App extends Component {
                 return <option key={person.id} value={person.money}>{person.firstName}</option>
               })}
             </select>
-            <div>Аmount of money</div>
+            <div>Amount of money</div>
             <div>
               <input type='number' onChange={this.transferMoneyChangeHandler}/>
             </div>
