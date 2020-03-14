@@ -73,7 +73,6 @@ class App extends Component {
   }
 
    callFirst = (e) => {
-     // setSaveFirst(parseInt(selectFirstValue.value))
      console.log('first',e.target.value)
      this.setState({
       firstPersonMoney: parseInt(e.target.value)
@@ -82,8 +81,7 @@ class App extends Component {
   }
 
   callSecond = (e) => {
-    // setSaveSecond(parseInt(selectSecondValue.value))
-    console.log('second',parseInt(e.target.value))
+    console.log('second',this.state.id)
     this.setState({
       secondPersonMoney: parseInt(e.target.value)
     })
