@@ -72,29 +72,29 @@ class App extends Component {
     })
   }
 
-   callFirst = (e) => {
-     console.log('first',parseInt(e.target.value))
-     this.setState({
+  callFirst = (e) => {
+    console.log('first', parseInt(e.target.value))
+    this.setState({
       firstPersonMoney: parseInt(e.target.value)
-     })
+    })
 
   }
 
   callSecond = (e) => {
-    console.log('second',parseInt(e.target.value))
+    console.log('second', parseInt(e.target.value))
     this.setState({
       secondPersonMoney: parseInt(e.target.value)
     })
   }
 
-  calcTransfer = (e) =>{
+  calcTransfer = (e) => {
     e.preventDefault()
-  this.setState({
-    firstPersonMoney: this.state.firstPersonMoney - this.state.transferMoney,
-    secondPersonMoney: this.state.transferMoney + this.state.secondPersonMoney
-  }) 
-    console.log('First Person',this.state.firstPersonMoney)
-    console.log('Second Person',this.state.secondPersonMoney)
+    this.setState({
+      firstPersonMoney: this.state.firstPersonMoney - this.state.transferMoney,
+      secondPersonMoney: this.state.transferMoney + this.state.secondPersonMoney
+    })
+    console.log('First Person', this.state.firstPersonMoney)
+    console.log('Second Person', this.state.secondPersonMoney)
   }
 
   render() {
@@ -116,7 +116,7 @@ class App extends Component {
           <form className={'form'}>
             <div>Transfer</div>
             <select onChange={this.callFirst}>
-            <option></option>
+              <option></option>
               {this.state.data.map((person) => {
                 return <option key={person.id} value={person.money} >{person.firstName}</option>
               })}
@@ -130,9 +130,9 @@ class App extends Component {
             </select>
             <div>Amount of money</div>
             <div>
-              <input type='number' onChange={this.transferMoneyChangeHandler}/>
+              <input type='number' onChange={this.transferMoneyChangeHandler} />
             </div>
-            <button type='submit'  onClick={this.calcTransfer}>Update</button>
+            <button type='submit' onClick={this.calcTransfer}>Update</button>
           </form>
           <table className={'cent'}>
             <thead>
@@ -164,51 +164,7 @@ class App extends Component {
       </div>
     );
   }
-
-
 }
-
-
-// let App = () => {
-//   let [selectFirstValue, setSelectFirstValue] = useState(0)
-//   let [selectSecondValue, setSelectSecondValue] = useState(0)
-//   let [saveFirst, setSaveFirst] = useState(0)
-//   let [saveSecond, setSaveSecond] = useState(0)
-
-  // let callFirst = (e) => {
-  //   setSaveFirst(parseInt(selectFirstValue.value))
-
-  // }
-  // let callSecond = (e) => {
-  //   setSaveSecond(parseInt(selectSecondValue.value))
-  // }
-
-//   let plus = () => {
-//    console.log(saveFirst+saveSecond)
-//   }
-
-//   return (
-//     <div>
-//       <div><select  className="form-control" ref={(input) => setSelectFirstValue(input)} onClick={callFirst} id="ntype" required>
-//         <option value="" >None</option>
-//         <option value="1"  >1</option>
-//         <option value="2">2</option>
-//         <option value="3">3</option>
-//       </select>
-//         <input type="button" value="click" onClick={callFirst} /></div>
-//     <div><select  className="form-control" ref={(input) => setSelectSecondValue(input)} onClick={callSecond} id="ntype" required>
-//         <option value="">None</option>
-//         <option value="1"  >1</option>
-//         <option value="2">2</option>
-//         <option value="3">3</option>
-//       </select>
-//         <input type="button" value="click" onClick={callSecond} /></div>
-
-//       <button onClick={plus} >Plus</button>
-//     </div>
-//   )
-
-// }
 
 export default App;
 
