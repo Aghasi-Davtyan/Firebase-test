@@ -118,14 +118,14 @@ class App extends Component {
             <select onChange={this.callFirst}>
               <option></option>
               {this.state.data.map((person) => {
-                return <option key={person.id} value={person.money} >{person.firstName}</option>
+                return <option key={person.id} value={person.money} label={person.firstName} />
               })}
             </select>
             <span>To</span>
             <select onChange={this.callSecond}>
               <option></option>
               {this.state.data.map((person) => {
-                return <option key={person.id} value={person.money}>{person.firstName}</option>
+                return <option key={person.id} label={person.firstName} value={person.money}/>
               })}
             </select>
             <div>Amount of money</div>
