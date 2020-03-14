@@ -71,14 +71,15 @@ class App extends Component {
   }
 
    callFirst = (e) => {
-     console.log('click first')
-    // setSaveFirst(parseInt(selectFirstValue.value))
+     // setSaveFirst(parseInt(selectFirstValue.value))
+     console.log('first',e.target.value)
 
   }
 
   callSecond = (e) => {
     // setSaveSecond(parseInt(selectSecondValue.value))
-    console.log('click second')
+    console.log('second',e.target.value)
+
   }
 
   render() {
@@ -99,13 +100,13 @@ class App extends Component {
           <button onClick={this.handleGet}>Get</button>
           <form className={'form'}>
             <div>Transfer</div>
-            <select onClick={this.callFirst}>
+            <select onChange={this.callFirst}>
               {this.state.data.map((person) => {
                 return <option key={person.id} value={person.money} >{person.firstName}</option>
               })}
             </select>
             <span>To</span>
-            <select onClick={this.callSecond}>
+            <select onChange={this.callSecond}>
               {this.state.data.map((person) => {
                 return <option key={person.id} value={person.money}>{person.firstName}</option>
               })}
