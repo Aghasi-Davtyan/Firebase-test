@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import axios from './axios'
 import './App.css';
 
@@ -10,7 +10,9 @@ class App extends Component {
     firstName: '',
     lastName: '',
     money: 0,
-    accountNumber: 0
+    accountNumber: 0,
+    id: '',
+    transferMoney: 0
   }
 
   componentDidMount() {
@@ -26,9 +28,9 @@ class App extends Component {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       money: this.state.money,
-      accountNumber: this.state.accountNumber + Math.floor(Math.random() * 10000000000000) + 1
+      accountNumber: this.state.accountNumber + Math.floor(Math.random() * 10000000000000) + 1,
+      id: this.state.id
     }
-
     axios.post('/person.json', obj)
       .then(response => console.log(response))
       .catch(error => console.log(error))
@@ -39,11 +41,11 @@ class App extends Component {
       .then(response => {
         let data = []
         for (let i in response.data) {
+          response.data[i].id = i
           data.push(response.data[i])
           this.setState({ data })
         }
-      }
-      )
+      })
   }
 
   firstNameChangeHandler = (event) => {
@@ -58,8 +60,25 @@ class App extends Component {
   }
   moneyChangeHandler = (event) => {
     this.setState({
-      money: event.target.value
+      money: parseInt(event.target.value)
     })
+  }
+
+  transferMoneyChangeHandler = (event) => {
+    this.setState({
+      transferMoney: parseInt(event.target.value)
+    })
+  }
+
+   callFirst = (e) => {
+     console.log('click first')
+    // setSaveFirst(parseInt(selectFirstValue.value))
+
+  }
+
+  callSecond = (e) => {
+    // setSaveSecond(parseInt(selectSecondValue.value))
+    console.log('click second')
   }
 
   render() {
@@ -80,20 +99,20 @@ class App extends Component {
           <button onClick={this.handleGet}>Get</button>
           <form className={'form'}>
             <div>Transfer</div>
-            <select>
+            <select onClick={this.callFirst}>
               {this.state.data.map((person) => {
-                return <option key={person.accountNumber}>{person.firstName}</option>
+                return <option key={person.id} value={person.money} >{person.firstName}</option>
               })}
             </select>
             <span>To</span>
-            <select>
+            <select onClick={this.callSecond}>
               {this.state.data.map((person) => {
-                return <option key={person.accountNumber}>{person.firstName}</option>
+                return <option key={person.id} value={person.money}>{person.firstName}</option>
               })}
             </select>
             <div>Аmount of money</div>
             <div>
-              <input type='number' />
+              <input type='number' onChange={this.transferMoneyChangeHandler}/>
             </div>
             <button type='submit'>Update</button>
           </form>
@@ -105,6 +124,8 @@ class App extends Component {
                 <th>Last Name</th>
                 <th>Money</th>
                 <th>Account Number</th>
+                <th></th>
+                <th>ID</th>
               </tr>
             </thead>
             <tbody>
@@ -115,6 +136,8 @@ class App extends Component {
                   <td>{person.lastName} </td>
                   <td>{person.money + '$'} </td>
                   <td>{person.accountNumber} </td>
+                  <td> </td>
+                  <td>{person.id}</td>
                 </tr>
               })}
             </tbody>
@@ -123,7 +146,51 @@ class App extends Component {
       </div>
     );
   }
+
+
 }
+
+
+// let App = () => {
+//   let [selectFirstValue, setSelectFirstValue] = useState(0)
+//   let [selectSecondValue, setSelectSecondValue] = useState(0)
+//   let [saveFirst, setSaveFirst] = useState(0)
+//   let [saveSecond, setSaveSecond] = useState(0)
+
+  // let callFirst = (e) => {
+  //   setSaveFirst(parseInt(selectFirstValue.value))
+
+  // }
+  // let callSecond = (e) => {
+  //   setSaveSecond(parseInt(selectSecondValue.value))
+  // }
+
+//   let plus = () => {
+//    console.log(saveFirst+saveSecond)
+//   }
+
+//   return (
+//     <div>
+//       <div><select  className="form-control" ref={(input) => setSelectFirstValue(input)} onClick={callFirst} id="ntype" required>
+//         <option value="" >None</option>
+//         <option value="1"  >1</option>
+//         <option value="2">2</option>
+//         <option value="3">3</option>
+//       </select>
+//         <input type="button" value="click" onClick={callFirst} /></div>
+//     <div><select  className="form-control" ref={(input) => setSelectSecondValue(input)} onClick={callSecond} id="ntype" required>
+//         <option value="">None</option>
+//         <option value="1"  >1</option>
+//         <option value="2">2</option>
+//         <option value="3">3</option>
+//       </select>
+//         <input type="button" value="click" onClick={callSecond} /></div>
+
+//       <button onClick={plus} >Plus</button>
+//     </div>
+//   )
+
+// }
 
 export default App;
 
