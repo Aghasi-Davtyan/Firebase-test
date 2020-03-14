@@ -89,7 +89,8 @@ class App extends Component {
     })
   }
 
-  calcTransfer = () =>{
+  calcTransfer = (e) =>{
+    e.preventDefault()
   this.setState({
     firstPersonMoney: this.state.firstPersonMoney - this.state.transferMoney,
     secondPersonMoney: this.state.transferMoney + this.state.secondPersonMoney
