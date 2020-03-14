@@ -73,7 +73,7 @@ class App extends Component {
   }
 
   callFirst = (e) => {
-    console.log('first',e.target.children[1].id)
+    console.log('first',e.target.children)
     this.setState({
       firstPersonMoney: parseInt(e.target.value)
     })
@@ -97,9 +97,7 @@ class App extends Component {
     console.log('Second Person', this.state.secondPersonMoney)
   }
 
-  geet = (e) => {
-    console.log(e.target)
-  }
+  
 
   render() {
     return (
