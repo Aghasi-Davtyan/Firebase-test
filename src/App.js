@@ -136,7 +136,6 @@ class App extends Component {
             </div>
             <button type='submit'  onClick={this.calcTransfer}>Update</button>
           </form>
-          <button onClick={this.calcTransfer}>Minus</button>
           <table className={'cent'}>
             <thead>
               <tr>
