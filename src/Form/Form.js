@@ -1,4 +1,5 @@
 import React from 'react';
+import './Form.css';
 
 const Form = (props) => {
 
@@ -12,24 +13,25 @@ const Form = (props) => {
     return (
         <form className={'form'}>
             <div>Transfer</div>
-            <select onChange={callFirst}>
-                <option></option>
+            <select onChange={callFirst} required>
+                <option />
                 {data.map((person) => {
                     return <option key={person.id} value={person.id} label={person.firstName} />
                 })}
             </select>
             <span>To</span>
-            <select onChange={callSecond}>
-                <option></option>
+            <select onChange={callSecond} required>
+                <option />
                 {data.map((person) => {
-                    return <option key={person.id} label={person.firstName} value={person.id} />
+                    return <option key={person.id} value={person.id} label={person.firstName} />
                 })}
             </select>
             <div>Amount of money</div>
             <div>
                 <input type='number' onChange={transferMoneyChangeHandler} />
             </div>
-            <button type='submit' onClick={calcTransfer}>Send</button>
+            <p>10% for each transfer</p>
+            <button className={'button1'} type='submit' onClick={calcTransfer} >Send</button>
         </form>
     );
 }

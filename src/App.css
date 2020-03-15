@@ -19,9 +19,7 @@
   overflow: auto;
 }
 
-.cent {
-  margin: 10px auto;
-}
+
 
 input[type='text']:focus {
   border: 1px solid green;
@@ -45,20 +43,7 @@ input[type='number']{
   padding: 10px;
 }
 
-button {
-  outline: none;
-  border-radius: 5px;
-  background-color: rgb(102, 98, 98);
-  border: none;
-  padding: 4px 10px;
-  margin: 5px;
-  cursor: pointer;
-  color: white;
-}
 
-button:active{
-  background-color:grey;
-}
 
 select {
   padding: 8px;

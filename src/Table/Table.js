@@ -1,14 +1,15 @@
 import React from 'react';
+import './Table.css'
 
 const Table = (props) => {
 
     let { data } = props
 
     return (
-        <table className={'cent'}>
+        <table className={'table'}>
             <thead>
                 <tr>
-                    <th>#</th>
+                    <th>№</th>
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Money</th>

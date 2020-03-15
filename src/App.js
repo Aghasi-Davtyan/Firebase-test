@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import axios from './axios'
 import './App.css';
-import Table from './Table';
-import Form from './Form';
-import Input from './Input';
+import Table from './Table/Table';
+import Form from './Form/Form';
+import Input from './Input/Input';
 
 
 class App extends Component {
@@ -26,7 +26,7 @@ class App extends Component {
     this.handleGet()
   }
 
-  handlePost = () => {
+  handlePost = async () => {
     let obj = {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
@@ -34,9 +34,14 @@ class App extends Component {
       accountNumber: this.state.accountNumber + Math.floor(Math.random() * 10000000000000) + 1,
       id: this.state.id
     }
-    axios.post('/person.json', obj)
+    if(this.state.firstName === '' || this.state.lastName === '' || this.state.money === 0){
+      alert('Select you First Name')
+      return null
+    }
+    await axios.post('/person.json', obj)
       .then(response => console.log(response))
       .catch(error => console.log(error))
+      this.handleGet()
   }
 
   handleGet = () => {
@@ -77,8 +82,7 @@ class App extends Component {
     await this.setState({
       firstId: e.target.value
     })
-    let firstUser;
-    firstUser = this.state.data.find(el => el.id === this.state.firstId)
+    let firstUser = this.state.data.find(el => el.id === this.state.firstId)
     this.setState({
       firstPersonMoney: parseInt(firstUser.money)
     })
@@ -97,8 +101,20 @@ class App extends Component {
 
   calcTransfer = async (e) => {
     e.preventDefault()
-    this.setState({
-      firstPersonMoney: this.state.firstPersonMoney - this.state.transferMoney,
+    if(this.state.firstPersonMoney - this.state.transferMoney < 0){
+      alert(`You don't have enough money`)
+      return null
+    }
+    if(this.state.firstId === '' && this.state.secondId === '' ){
+      alert('Select person')
+      return null
+    }
+    if(this.state.transferMoney === 0){
+      alert('Choose Money')
+      return null
+    }
+   await this.setState({
+      firstPersonMoney: (this.state.firstPersonMoney - this.state.transferMoney) - (this.state.transferMoney * 0.1),
       secondPersonMoney: this.state.transferMoney + this.state.secondPersonMoney
     })
     let obj
@@ -130,6 +146,8 @@ class App extends Component {
     await axios.put(`/person/${this.state.secondId}.json`, obj2)
       .then(response => console.log(response))
       .catch(error => console.log(error))
+      alert('Your transfer has been successfully completed')
+      this.handleGet()
   }
 
   render() {
@@ -137,18 +155,19 @@ class App extends Component {
       <div className="App">
         <div className={'container'}>
           <Input firstName={this.state.firstName}
-            lastName={this.state.lastName}
-            firstNameChangeHandler={this.firstNameChangeHandler}
-            lastNameChangeHandler={this.lastNameChangeHandler}
-            money={this.state.money}
-            moneyChangeHandler={this.moneyChangeHandler} />
+                  lastName={this.state.lastName} 
+                  firstNameChangeHandler={this.firstNameChangeHandler}
+                  lastNameChangeHandler={this.lastNameChangeHandler}
+                  money={this.state.money}
+                  moneyChangeHandler={this.moneyChangeHandler}
+            />
           <button onClick={this.handlePost}>Post</button>
           <button onClick={this.handleGet}>Get</button>
           <Form data={this.state.data}
             callFirst={this.callFirst}
             callSecond={this.callSecond}
             transferMoneyChangeHandler={this.transferMoneyChangeHandler}
-            calcTransfer={this.calcTransfer} />
+            calcTransfer={this.calcTransfer}/>
           <Table data={this.state.data} />
         </div>
       </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import './Input.css';
 
 const Input = (props) => {
 
@@ -12,8 +13,8 @@ const Input = (props) => {
 
     return (
         <div>
-            <input type='text' placeholder='First Name' value={firstName} onChange={firstNameChangeHandler} />
-            <input type='text' placeholder='Last Name' value={lastName} onChange={lastNameChangeHandler} />
+            <input type='text' placeholder='First Name' value={firstName} onChange={firstNameChangeHandler}  required/>
+            <input type='text' placeholder='Last Name' value={lastName} onChange={lastNameChangeHandler} required/>
             <div>
                 <label>Money</label>
                 <input type='number' value={money} onChange={moneyChangeHandler} />
