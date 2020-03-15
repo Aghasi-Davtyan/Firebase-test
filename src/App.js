@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import axios from './axios'
 import './App.css';
+import Table from './Table';
+import Form from './Form';
 
 
 class App extends Component {
-
-
 
   state = {
     data: [],
@@ -24,10 +24,6 @@ class App extends Component {
   componentDidMount() {
     this.handleGet()
   }
-
-  // componentDidUpdate(){
-  //   this.handleGet()
-  // }
 
   handlePost = () => {
     let obj = {
@@ -135,71 +131,26 @@ class App extends Component {
       .catch(error => console.log(error))
   }
 
-
-
   render() {
     return (
       <div className="App">
         <div className={'container'}>
           <div>
-            {/* <label>First Name:</label> */}
             <input type='text' placeholder='First Name' value={this.state.firstName} onChange={this.firstNameChangeHandler} />
-            {/* <label>Last Name:</label> */}
             <input type='text' placeholder='Last Name' value={this.state.lastName} onChange={this.lastNameChangeHandler} />
             <div>
               <label>Money</label>
-              <input type='number' placeholder='Bills' value={this.state.money} onChange={this.moneyChangeHandler} />
+              <input type='number' value={this.state.money} onChange={this.moneyChangeHandler} />
             </div>
           </div>
           <button onClick={this.handlePost}>Post</button>
           <button onClick={this.handleGet}>Get</button>
-          <form className={'form'}>
-            <div>Transfer</div>
-            <select onChange={this.callFirst}>
-              <option></option>
-              {this.state.data.map((person) => {
-                return <option key={person.id} value={person.id} label={person.firstName} />
-              })}
-            </select>
-            <span>To</span>
-            <select onChange={this.callSecond}>
-              <option></option>
-              {this.state.data.map((person) => {
-                return <option key={person.id} label={person.firstName} value={person.id} />
-              })}
-            </select>
-            <div>Amount of money</div>
-            <div>
-              <input type='number' onChange={this.transferMoneyChangeHandler} />
-            </div>
-            <button type='submit' onClick={this.calcTransfer}>Send</button>
-          </form>
-          <table className={'cent'}>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Money</th>
-                <th>Account Number</th>
-                <th></th>
-                <th>ID</th>
-              </tr>
-            </thead>
-            <tbody>
-              {this.state.data.map((person, i) => {
-                return <tr key={person.accountNumber}>
-                  <td >{i + 1 + '.'}</td>
-                  <td>{person.firstName} </td>
-                  <td>{person.lastName} </td>
-                  <td>{person.money + '$'} </td>
-                  <td>{person.accountNumber} </td>
-                  <td> </td>
-                  <td>{person.id}</td>
-                </tr>
-              })}
-            </tbody>
-          </table>
+          <Form data={this.state.data}
+            callFirst={this.callFirst}
+            callSecond={this.callSecond}
+            transferMoneyChangeHandler={this.transferMoneyChangeHandler}
+            calcTransfer={this.calcTransfer} />
+          <Table data={this.state.data} />
         </div>
       </div>
     );
