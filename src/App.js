@@ -1,9 +1,11 @@
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 import axios from './axios'
 import './App.css';
 
 
 class App extends Component {
+
+
 
   state = {
     data: [],
@@ -11,6 +13,8 @@ class App extends Component {
     lastName: '',
     money: 0,
     accountNumber: 0,
+    firstId: '',
+    secondId: '',
     id: '',
     transferMoney: 0,
     firstPersonMoney: 0,
@@ -72,32 +76,66 @@ class App extends Component {
     })
   }
 
-  callFirst = (e) => {
-    console.log('first',e.target.children)
+  callFirst = async (e) => {
+    await this.setState({
+      firstId: e.target.value
+    })
+    let firstUser;
+    firstUser = this.state.data.find(el => el.id === this.state.firstId)
     this.setState({
-      firstPersonMoney: parseInt(e.target.value)
+      firstPersonMoney: parseInt(firstUser.money)
     })
 
   }
 
-  callSecond = (e) => {
-    console.log('second', parseInt(e.target.value))
+  callSecond = async (e) => {
+    await this.setState({
+      secondId: e.target.value
+    })
+    let secondUser = this.state.data.find(el => el.id === this.state.secondId)
     this.setState({
-      secondPersonMoney: parseInt(e.target.value)
+      secondPersonMoney: parseInt(secondUser.money)
     })
   }
 
-  calcTransfer = (e) => {
+  calcTransfer = async (e) => {
     e.preventDefault()
     this.setState({
       firstPersonMoney: this.state.firstPersonMoney - this.state.transferMoney,
       secondPersonMoney: this.state.transferMoney + this.state.secondPersonMoney
     })
-    console.log('First Person', this.state.firstPersonMoney)
-    console.log('Second Person', this.state.secondPersonMoney)
+    let obj
+    await axios.get(`/person/${this.state.firstId}.json`)
+      .then(response => {
+        obj = {
+          firstName: response.data.firstName,
+          lastName: response.data.lastName,
+          money: this.state.firstPersonMoney,
+          accountNumber: response.data.accountNumber,
+          id: response.data.id
+        }
+      })
+    await axios.put(`/person/${this.state.firstId}.json`, obj)
+      .then(response => console.log(response))
+      .catch(error => console.log(error))
+
+    let obj2
+    await axios.get(`/person/${this.state.secondId}.json`)
+      .then(response => {
+        obj2 = {
+          firstName: response.data.firstName,
+          lastName: response.data.lastName,
+          money: this.state.secondPersonMoney,
+          accountNumber: response.data.accountNumber,
+          id: response.data.id
+        }
+      })
+    await axios.put(`/person/${this.state.secondId}.json`, obj2)
+      .then(response => console.log(response))
+      .catch(error => console.log(error))
   }
 
-  
+
 
   render() {
     return (
@@ -120,21 +158,21 @@ class App extends Component {
             <select onChange={this.callFirst}>
               <option></option>
               {this.state.data.map((person) => {
-                return <option key={person.id} id={person.id} value={person.money} label={person.firstName} />
+                return <option key={person.id} value={person.id} label={person.firstName} />
               })}
             </select>
             <span>To</span>
             <select onChange={this.callSecond}>
               <option></option>
               {this.state.data.map((person) => {
-                return <option key={person.id} id={person.id} label={person.firstName} value={person.money}/>
+                return <option key={person.id} label={person.firstName} value={person.id} />
               })}
             </select>
             <div>Amount of money</div>
             <div>
               <input type='number' onChange={this.transferMoneyChangeHandler} />
             </div>
-            <button type='submit' onClick={this.calcTransfer}>Update</button>
+            <button type='submit' onClick={this.calcTransfer}>Send</button>
           </form>
           <table className={'cent'}>
             <thead>
