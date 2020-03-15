@@ -4,8 +4,6 @@ const Table = (props) => {
 
     let { data } = props
 
-    
-
     return (
         <table className={'cent'}>
             <thead>

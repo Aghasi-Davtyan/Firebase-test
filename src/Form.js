@@ -2,7 +2,12 @@ import React from 'react';
 
 const Form = (props) => {
 
-    let { data, callFirst, callSecond, transferMoneyChangeHandler, calcTransfer } = props
+    let {
+        data,
+        callFirst,
+        callSecond,
+        transferMoneyChangeHandler,
+        calcTransfer } = props
 
     return (
         <form className={'form'}>

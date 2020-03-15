@@ -3,6 +3,7 @@ import axios from './axios'
 import './App.css';
 import Table from './Table';
 import Form from './Form';
+import Input from './Input';
 
 
 class App extends Component {
@@ -135,14 +136,12 @@ class App extends Component {
     return (
       <div className="App">
         <div className={'container'}>
-          <div>
-            <input type='text' placeholder='First Name' value={this.state.firstName} onChange={this.firstNameChangeHandler} />
-            <input type='text' placeholder='Last Name' value={this.state.lastName} onChange={this.lastNameChangeHandler} />
-            <div>
-              <label>Money</label>
-              <input type='number' value={this.state.money} onChange={this.moneyChangeHandler} />
-            </div>
-          </div>
+          <Input firstName={this.state.firstName}
+            lastName={this.state.lastName}
+            firstNameChangeHandler={this.firstNameChangeHandler}
+            lastNameChangeHandler={this.lastNameChangeHandler}
+            money={this.state.money}
+            moneyChangeHandler={this.moneyChangeHandler} />
           <button onClick={this.handlePost}>Post</button>
           <button onClick={this.handleGet}>Get</button>
           <Form data={this.state.data}
