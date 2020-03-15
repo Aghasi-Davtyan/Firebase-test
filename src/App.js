@@ -112,7 +112,7 @@ class App extends Component {
           lastName: response.data.lastName,
           money: this.state.firstPersonMoney,
           accountNumber: response.data.accountNumber,
-          id: response.data.id
+          id: this.state.firstId
         }
       })
     await axios.put(`/person/${this.state.firstId}.json`, obj)
@@ -127,7 +127,7 @@ class App extends Component {
           lastName: response.data.lastName,
           money: this.state.secondPersonMoney,
           accountNumber: response.data.accountNumber,
-          id: response.data.id
+          id: this.state.secondId
         }
       })
     await axios.put(`/person/${this.state.secondId}.json`, obj2)
