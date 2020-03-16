@@ -7,6 +7,7 @@ const FormContainer = (props) => {
 
    let { state,
       handleGet,
+      showModal
    } = props
 
    let [error, setError] = useState(false)
@@ -68,9 +69,10 @@ const FormContainer = (props) => {
       await axios.put(`/person/${state.secondId}.json`, obj2)
          .then(response => console.log(response))
          .catch(error => console.log(error))
-      alert('Your transfer has been successfully completed')
+      // alert('Your transfer has been successfully completed')
       handleGet()
       setError(false)
+      showModal(true)
    }
 
    return (

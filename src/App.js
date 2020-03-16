@@ -4,6 +4,7 @@ import './App.css';
 import Table from './component/Table/Table';
 import InputContainer from './component/Input/InputContainer';
 import FormContainer from './component/Form/FormContainer';
+import Modal from './component/Modal/Modal';
 
 
 class App extends Component {
@@ -20,7 +21,8 @@ class App extends Component {
     transferMoney: 0,
     firstPersonMoney: 0,
     secondPersonMoney: 0,
-    error: false
+    error: false,
+    modalVisible: false
   }
   componentDidMount() {
     this.handleGet()
@@ -66,6 +68,10 @@ class App extends Component {
     }
   }
 
+  showModal = (check) => this.setState(()=>({modalVisible: check}))
+  hideModal = () => this.setState(()=>({modalVisible: false}))
+
+
   render() {
     return (
       <div className="App">
@@ -77,12 +83,18 @@ class App extends Component {
             moneyChangeHandler={this.moneyChangeHandler}
             handleGet={this.handleGet} />
           <FormContainer
+          showModal={this.showModal}
             state={this.state}
-            handleGet={this.handleGet}
-            transferMoneyChangeHandler={this.transferMoneyChangeHandler} />
+            handleGet={this.handleGet}/>
           <Table
             data={this.state.data}
             handleGet={this.handleGet}/>
+
+           {this.state.modalVisible &&
+            <Modal hideModal={this.hideModal}>
+              <code>Your transfer has been successfully completed</code>
+            </Modal>
+            }
         </div>
       </div>
     );
