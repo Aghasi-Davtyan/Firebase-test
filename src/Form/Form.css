@@ -11,6 +11,7 @@
   transition: all 0.5s;
   cursor: pointer;
   margin: 5px;
+  outline: none;
 }
 
 .button1 span {
@@ -36,4 +37,29 @@
 .button1:hover span:after {
   opacity: 1;
   right: 0;
+}
+
+
+input[type='number']:focus {
+  border: 1px solid green;
+  outline: none;
+  box-shadow: 0 0 5px green;
+}
+
+input[type='number'] {
+  border: 1px solid grey;
+  margin: 5px;
+  padding: 10px;
+}
+
+select {
+  padding: 8px;
+  border-radius: 5px;
+  outline: none;
+  margin: 10px 30px;
+}
+
+select:focus {
+  border: 1px solid green;
+  box-shadow: 0 0 5px green;
 }

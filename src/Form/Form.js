@@ -14,7 +14,7 @@ const Form = (props) => {
         <form className={'form'} onSubmit={calcTransfer}>
             <div>Transfer</div>
             <div>
-            <select onChange={callFirst} required>
+            <select onChange={callFirst} required className='a'>
                 <option />
                 {data.map((person) => {
                     return <option key={person.id} value={person.id} label={person.firstName} />

@@ -27,7 +27,7 @@ const Table = (props) => {
                         <td>{person.money + '$'} </td>
                         <td>{person.accountNumber} </td>
                         <td>{person.id}</td>
-                        <td><button onClick={()=>handleDelete(person.id)}>delete</button> </td>
+                        <td><button className={'deleteBtn'} onClick={()=>handleDelete(person.id)}>Delete</button></td>
                     </tr>
                 })}
             </tbody>

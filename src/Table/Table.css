@@ -7,6 +7,7 @@ th,
 td {
     text-align: center;
     padding: 8px;
+    
 }
 
 tr:nth-child(even) {
@@ -16,8 +17,23 @@ tr:nth-child(even) {
 th {
     background-color: #4CAF50;
     color: white;
+    
 }
 
 .table {
     margin: 10px auto;
+}
+
+.deleteBtn {
+    color: #fff;
+    background-color: #d43f3a;
+    border: none;
+    padding: 5px 6px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.deleteBtn:hover {
+    background-color: #d9534f;
+
 }
