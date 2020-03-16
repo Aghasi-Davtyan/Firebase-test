@@ -33,12 +33,12 @@ class FormContainer extends Component {
    callFirst = async (e) => {
      await this.setState({firstId:e.target.value})
       let firstUser = this.state.data.find(el => el.id === this.state.firstId)
-      this.setState({firstPersonMoney:parseInt(firstUser.money)})
+      this.setState({firstPersonMoney: parseInt(firstUser.money)})
    }
    callSecond = async (e) => {
     await  this.setState({secondId:e.target.value})
       let secondUser = this.state.data.find(el => el.id === this.state.secondId)
-      this.setState({ secondPersonMoney :parseInt(secondUser.money)})
+      this.setState({ secondPersonMoney : parseInt(secondUser.money)})
    }
    transferMoneyChangeHandler = (event) => {
      this.setState({transferMoney: parseInt(event.target.value)})
@@ -59,7 +59,7 @@ class FormContainer extends Component {
             obj = {
                firstName: response.data.firstName,
                lastName: response.data.lastName,
-               money: this.state.firstPersonMoney,
+               money: Math.round(this.state.firstPersonMoney),
                accountNumber: response.data.accountNumber,
                id: this.state.firstId
             }
@@ -74,7 +74,7 @@ class FormContainer extends Component {
             obj2 = {
                firstName: response.data.firstName,
                lastName: response.data.lastName,
-               money: this.state.secondPersonMoney,
+               money: Math.round(this.state.secondPersonMoney),
                accountNumber: response.data.accountNumber,
                id: this.state.secondId
             }
