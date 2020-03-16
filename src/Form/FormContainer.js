@@ -1,100 +1,76 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Form.css';
 import axios from '../axios'
 import Form from './Form';
 
-class FormContainer extends Component {
+const FormContainer = (props) => {
 
-   state = {
-      data: [],
-      firstId: '',
-      secondId: '',
-      id: '',
-      firstPersonMoney: 0,
-      secondPersonMoney: 0,
-      transferMoney: 0,
-   }
+   let { state,
+      handleGet,
+   } = props
 
-   componentDidMount(){
-      this.handleGet()
+   let callSecond = async (e) => {
+      state.secondId = e.target.value
+      let secondUser = state.data.find(el => el.id === state.secondId)
+      state.secondPersonMoney = parseInt(secondUser.money)
    }
-
-   handleGet = () => {
-      axios.get('/person.json')
-         .then(response => {
-            let data = []
-            for (let i in response.data) {
-               response.data[i].id = i
-               data.push(response.data[i])
-               this.setState({ data })
-            }
-         })
+   let callFirst = async (e) => {
+      state.firstId = e.target.value
+      let firstUser = state.data.find(el => el.id === state.firstId)
+      state.firstPersonMoney = parseInt(firstUser.money)
    }
-
-   callFirst = async (e) => {
-     await this.setState({firstId:e.target.value})
-      let firstUser = this.state.data.find(el => el.id === this.state.firstId)
-      this.setState({firstPersonMoney:parseInt(firstUser.money)})
+   let transferMoneyChangeHandler = (event) => {
+      state.transferMoney = parseInt(event.target.value)
    }
-   callSecond = async (e) => {
-    await  this.setState({secondId:e.target.value})
-      let secondUser = this.state.data.find(el => el.id === this.state.secondId)
-      this.setState({ secondPersonMoney :parseInt(secondUser.money)})
-   }
-   transferMoneyChangeHandler = (event) => {
-     this.setState({transferMoney: parseInt(event.target.value)})
-   }
-   calcTransfer = async (e) => {
+   let calcTransfer = async (e) => {
       e.preventDefault()
-      if (this.state.firstPersonMoney - this.state.transferMoney < 0) { return null }
-      if (this.state.firstId === '' && this.state.secondId === '') { return null }
-      if (this.state.transferMoney === 0) { return null }
-      if (this.state.firstId === this.state.secondId) { return null }
-      this.setState({
-         firstPersonMoney: (this.state.firstPersonMoney - this.state.transferMoney) - (this.state.transferMoney * 0.1),
-         secondPersonMoney: this.state.transferMoney + this.state.secondPersonMoney
-      })
+      if (state.firstPersonMoney - state.transferMoney < 0) { return null }
+      if (state.firstId === '' && state.secondId === '') { return null }
+      if (state.transferMoney === 0) { return null }
+      if (state.firstId === state.secondId) { return null }
+
+      state.firstPersonMoney = (state.firstPersonMoney - state.transferMoney) - (state.transferMoney * 0.1)
+      state.secondPersonMoney = state.transferMoney + state.secondPersonMoney
       let obj
-      await axios.get(`/person/${this.state.firstId}.json`)
+      await axios.get(`/person/${state.firstId}.json`)
          .then(response => {
             obj = {
                firstName: response.data.firstName,
                lastName: response.data.lastName,
-               money: this.state.firstPersonMoney,
+               money: state.firstPersonMoney,
                accountNumber: response.data.accountNumber,
-               id: this.state.firstId
+               id: state.firstId
             }
          })
-      await axios.put(`/person/${this.state.firstId}.json`, obj)
+      await axios.put(`/person/${state.firstId}.json`, obj)
          .then(response => console.log(response))
          .catch(error => console.log(error))
 
       let obj2
-      await axios.get(`/person/${this.state.secondId}.json`)
+      await axios.get(`/person/${state.secondId}.json`)
          .then(response => {
             obj2 = {
                firstName: response.data.firstName,
                lastName: response.data.lastName,
-               money: this.state.secondPersonMoney,
+               money: state.secondPersonMoney,
                accountNumber: response.data.accountNumber,
-               id: this.state.secondId
+               id: state.secondId
             }
          })
-      await axios.put(`/person/${this.state.secondId}.json`, obj2)
+      await axios.put(`/person/${state.secondId}.json`, obj2)
          .then(response => console.log(response))
          .catch(error => console.log(error))
       alert('Your transfer has been successfully completed')
-      this.props.handleGet()
+      handleGet()
    }
-   render() {
-      return <Form
-         data={this.state.data}
-         callFirst={this.callFirst}
-         callSecond={this.callSecond}
-         calcTransfer={this.calcTransfer}
-         transferMoneyChangeHandler={this.transferMoneyChangeHandler}
-      />
-   }
+
+   return <Form
+      data={state.data}
+      callFirst={callFirst}
+      callSecond={callSecond}
+      calcTransfer={calcTransfer}
+      transferMoneyChangeHandler={transferMoneyChangeHandler}
+   />
 }
 
 export default FormContainer;

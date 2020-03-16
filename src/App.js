@@ -38,14 +38,36 @@ class App extends Component {
       })
   }
 
+  firstNameChangeHandler = (event) => {
+    this.setState({
+      firstName: event.target.value
+    })
+  }
+  lastNameChangeHandler = (event) => {
+    this.setState({
+      lastName: event.target.value
+    })
+  }
+  moneyChangeHandler = (event) => {
+    this.setState({
+      money: parseInt(event.target.value)
+    })
+  }
+
   render() {
     return (
       <div className="App">
         <div className={'container'}>
           <InputContainer
+            state={this.state}
+            firstNameChangeHandler={this.firstNameChangeHandler}
+            lastNameChangeHandler={this.lastNameChangeHandler}
+            moneyChangeHandler={this.moneyChangeHandler}
             handleGet={this.handleGet} />
           <FormContainer
-            handleGet={this.handleGet} />
+            state={this.state}
+            handleGet={this.handleGet}
+            transferMoneyChangeHandler={this.transferMoneyChangeHandler} />
           <Table
             data={this.state.data}
             handleGet={this.handleGet}/>
