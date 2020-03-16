@@ -11,8 +11,9 @@ const Form = (props) => {
         calcTransfer } = props
 
     return (
-        <form className={'form'}>
+        <form className={'form'} onSubmit={calcTransfer}>
             <div>Transfer</div>
+            <div>
             <select onChange={callFirst} required>
                 <option />
                 {data.map((person) => {
@@ -26,12 +27,13 @@ const Form = (props) => {
                     return <option key={person.id} value={person.id} label={person.firstName} />
                 })}
             </select>
+            </div>
             <div>Amount of money</div>
             <div>
                 <input type='number' onChange={transferMoneyChangeHandler} />
             </div>
             <p>10% for each transfer</p>
-            <button className={'button1'} type='submit' onClick={calcTransfer} >Send</button>
+            <button className={'button1'} type='submit' ><span>Send</span></button>
         </form>
     );
 }

@@ -9,16 +9,20 @@ const Input = (props) => {
         firstNameChangeHandler,
         lastNameChangeHandler,
         money,
-        moneyChangeHandler } = props
+        moneyChangeHandler,
+        handlePost } = props
 
     return (
         <div>
-            <input type='text' placeholder='First Name' value={firstName} onChange={firstNameChangeHandler}  required/>
-            <input type='text' placeholder='Last Name' value={lastName} onChange={lastNameChangeHandler} required/>
-            <div>
-                <label>Money</label>
-                <input type='number' value={money} onChange={moneyChangeHandler} />
-            </div>
+            <form required={true} onSubmit={handlePost}>
+                <input type='text' placeholder='First Name' value={firstName} onChange={firstNameChangeHandler} required={true} />
+                <input type='text' placeholder='Last Name' value={lastName} onChange={lastNameChangeHandler} required={true} />
+                <div>
+                    <label>Money</label>
+                    <input type='number' value={money} onChange={moneyChangeHandler} required={true} />
+                </div>
+                <button>Post</button>
+            </form>
         </div>
     );
 }

@@ -19,7 +19,8 @@ class App extends Component {
     id: '',
     transferMoney: 0,
     firstPersonMoney: 0,
-    secondPersonMoney: 0
+    secondPersonMoney: 0,
+    error: false
   }
 
   componentDidMount() {
@@ -35,7 +36,8 @@ class App extends Component {
       id: this.state.id
     }
     if(this.state.firstName === '' || this.state.lastName === '' || this.state.money === 0){
-      alert('Select you First Name')
+      // alert('Select you First Name')
+      this.setState({error: true})
       return null
     }
     await axios.post('/person.json', obj)
@@ -102,15 +104,22 @@ class App extends Component {
   calcTransfer = async (e) => {
     e.preventDefault()
     if(this.state.firstPersonMoney - this.state.transferMoney < 0){
-      alert(`You don't have enough money`)
+      // alert(`You don't have enough money`)
+      this.setState({error: true})
       return null
     }
     if(this.state.firstId === '' && this.state.secondId === '' ){
-      alert('Select person')
+      // alert('Select person')
+      this.setState({error: true})
       return null
     }
     if(this.state.transferMoney === 0){
-      alert('Choose Money')
+      // alert('Choose Money')
+      this.setState({error: true})
+      return null
+    }
+    if(this.state.firstId === this.state.secondId ){
+      this.setState({error: true})
       return null
     }
    await this.setState({
@@ -158,11 +167,10 @@ class App extends Component {
                   lastName={this.state.lastName} 
                   firstNameChangeHandler={this.firstNameChangeHandler}
                   lastNameChangeHandler={this.lastNameChangeHandler}
-                  money={this.state.money}
                   moneyChangeHandler={this.moneyChangeHandler}
+                  money={this.state.money}
+                  handlePost={this.handlePost}
             />
-          <button onClick={this.handlePost}>Post</button>
-          <button onClick={this.handleGet}>Get</button>
           <Form data={this.state.data}
             callFirst={this.callFirst}
             callSecond={this.callSecond}
