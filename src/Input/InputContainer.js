@@ -7,6 +7,7 @@ const InputContainer = (props) => {
 
    let {
       state,
+      checkError,
       firstNameChangeHandler,
       lastNameChangeHandler,
       moneyChangeHandler,
@@ -22,6 +23,7 @@ const InputContainer = (props) => {
          id: state.id
       }
       if (state.firstName === '' || state.lastName === '' || state.money === 0) {
+       await  checkError()
          return null
       }
       await axios.post('/person.json', obj)
@@ -30,7 +32,9 @@ const InputContainer = (props) => {
       handleGet()
    }
    return (
-      <Input handlePost={handlePost}
+      <Input
+         error={state.error}
+         handlePost={handlePost}
          firstName={state.firstName}
          lastName={state.lastName}
          firstNameChangeHandler={firstNameChangeHandler}

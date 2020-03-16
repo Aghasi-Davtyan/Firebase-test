@@ -16,7 +16,7 @@
   .btnPost:hover {
     transform: scale(.98);
   }
-  
+ 
   input {
     border-radius: 5px;
   }
@@ -26,7 +26,10 @@
     margin: 5px;
     padding: 10px;
   }
-
+  .emptyInput {
+    border: 1px solid red;
+  }
+  
   input[type='text']:focus {
     border: 1px solid green;
     outline: none;

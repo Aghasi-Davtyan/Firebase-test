@@ -26,6 +26,13 @@ class App extends Component {
     this.handleGet()
   }
 
+
+  checkError = () =>{
+    this.setState({
+      error: true
+    })
+  }
+
   handleGet = () => {
     axios.get('/person.json')
       .then(response => {
@@ -60,6 +67,7 @@ class App extends Component {
         <div className={'container'}>
           <InputContainer
             state={this.state}
+            checkError={this.checkError}
             firstNameChangeHandler={this.firstNameChangeHandler}
             lastNameChangeHandler={this.lastNameChangeHandler}
             moneyChangeHandler={this.moneyChangeHandler}
