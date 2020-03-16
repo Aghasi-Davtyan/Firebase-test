@@ -20,7 +20,7 @@ const Input = (props) => {
                     <label>Money</label>
                     <input type='number'  onChange={moneyChangeHandler} required={true} />
                 </div>
-                <button className={'btnPost'}><span>Post</span></button>
+                <button className={'btnPost'}><span>Add</span></button>
             </form>
         </div>
     );
