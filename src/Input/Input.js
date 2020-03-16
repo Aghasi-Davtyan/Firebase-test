@@ -18,7 +18,7 @@ const Input = (props) => {
                 <input type='text' placeholder='Last Name' value={lastName} onChange={lastNameChangeHandler} required={true} />
                 <div>
                     <label>Money</label>
-                    <input type='number'  onChange={moneyChangeHandler} required={true} />
+                    <input type='number' onChange={moneyChangeHandler} required={true} />
                 </div>
                 <button className={'btnPost'}><span>Add</span></button>
             </form>

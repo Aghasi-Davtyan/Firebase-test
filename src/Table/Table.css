@@ -31,6 +31,7 @@ th {
     padding: 5px 6px;
     border-radius: 5px;
     cursor: pointer;
+    outline: none;
 }
 
 .deleteBtn:hover {

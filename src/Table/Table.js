@@ -1,9 +1,15 @@
 import React from 'react';
-import './Table.css'
+import './Table.css';
+import axios from '../axios'
 
 const Table = (props) => {
 
-    let { data ,handleDelete} = props
+    let { data, handleGet } = props
+
+    let handleDelete = async (personID) => {
+        await axios.delete(`/person/${personID}.json`)
+        handleGet()
+    }
 
     return (
         <table className={'table'}>
@@ -27,7 +33,7 @@ const Table = (props) => {
                         <td>{person.money + '$'} </td>
                         <td>{person.accountNumber} </td>
                         <td>{person.id}</td>
-                        <td><button className={'deleteBtn'} onClick={()=>handleDelete(person.id)}>Delete</button></td>
+                        <td><button className={'deleteBtn'} onClick={() => handleDelete(person.id)}>Delete</button></td>
                     </tr>
                 })}
             </tbody>
