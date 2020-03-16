@@ -1,6 +1,9 @@
 table {
     border-collapse: collapse;
     width: 100%;
+    display: block;
+    height: 350px;
+    border-radius: 10px;
 }
 
 th,
@@ -11,7 +14,7 @@ td {
 }
 
 tr:nth-child(even) {
-    background-color: #f2f2f2
+    background-color: #f2f2f2;
 }
 
 th {
@@ -38,3 +41,8 @@ th {
     background-color: #d9534f;
 
 }
+
+::-webkit-scrollbar {
+    border-radius: 10px;
+}
+  

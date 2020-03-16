@@ -5,7 +5,6 @@ import './Input.css';
 const Input = (props) => {
 
     let {
-        error,
         firstName,
         lastName,
         firstNameChangeHandler,
@@ -13,10 +12,7 @@ const Input = (props) => {
         moneyChangeHandler,
         handlePost } = props
 
-
     return (
-        <div>
-            {error && <code style={{ color: 'red' }}>Please write your details</code>}
             <form onSubmit={handlePost}>
                 <input
                     type='text'
@@ -36,7 +32,6 @@ const Input = (props) => {
                 </div>
                 <button className={'btnPost'}><span>Add</span></button>
             </form>
-        </div>
     );
 }
 

@@ -1,5 +1,5 @@
-import React from 'react';
-import axios from '../axios'
+import React, { useState } from 'react';
+import axios from '../../axios'
 import './Input.css';
 import Input from './Input';
 
@@ -7,11 +7,12 @@ const InputContainer = (props) => {
 
    let {
       state,
-      checkError,
       firstNameChangeHandler,
       lastNameChangeHandler,
       moneyChangeHandler,
       handleGet } = props
+
+   let [error, setError] = useState(false)
 
    let handlePost = async (e) => {
       e.preventDefault()
@@ -23,10 +24,10 @@ const InputContainer = (props) => {
          id: state.id
       }
       if (state.firstName === '' || state.lastName === '' || state.money === 0) {
-       await  checkError(true)
+         await setError(true)
          return null
       }
-      
+
       await axios.post('/person.json', obj)
          .then(response => console.log(response))
          .catch(error => console.log(error))
@@ -34,17 +35,19 @@ const InputContainer = (props) => {
 
       state.firstName = ''
       state.lastName = ''
+      setError(false)
    }
    return (
-      <Input
-         error={state.error}
-         handlePost={handlePost}
-         firstName={state.firstName}
-         lastName={state.lastName}
-         firstNameChangeHandler={firstNameChangeHandler}
-         lastNameChangeHandler={lastNameChangeHandler}
-         moneyChangeHandler={moneyChangeHandler} />
-
+      <div>
+         {error && <code style={{ color: 'red' }}>Please write your details</code>}
+         <Input
+            handlePost={handlePost}
+            firstName={state.firstName}
+            lastName={state.lastName}
+            firstNameChangeHandler={firstNameChangeHandler}
+            lastNameChangeHandler={lastNameChangeHandler}
+            moneyChangeHandler={moneyChangeHandler} />
+      </div>
    );
 }
 

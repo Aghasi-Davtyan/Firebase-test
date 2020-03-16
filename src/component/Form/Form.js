@@ -5,6 +5,7 @@ const Form = (props) => {
 
     let {
         data,
+        error,
         calcTransfer,
         callFirst,
         callSecond,
@@ -39,10 +40,10 @@ const Form = (props) => {
                 <input
                     type='number'
                     onChange={transferMoneyChangeHandler}
-                    required={true} />
+                    required/>
             </div>
-            <p>10% for each transfer</p>
-            <button className={'button1'} type='submit' ><span>Send</span></button>
+            {(error) ? props.children : <p>10% for each transfer</p>}
+            <div><button className={'button1'} type='submit' ><span>Send</span></button></div>
         </form>
     );
 }

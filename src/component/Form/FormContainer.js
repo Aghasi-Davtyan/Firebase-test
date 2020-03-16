@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Form.css';
-import axios from '../axios'
+import axios from '../../axios'
 import Form from './Form';
 
 const FormContainer = (props) => {
@@ -8,6 +8,8 @@ const FormContainer = (props) => {
    let { state,
       handleGet,
    } = props
+
+   let [error, setError] = useState(false)
 
    let callSecond = async (e) => {
       state.secondId = e.target.value
@@ -24,12 +26,16 @@ const FormContainer = (props) => {
    }
    let calcTransfer = async (e) => {
       e.preventDefault()
-      if (state.firstPersonMoney - state.transferMoney < 0) { 
+      if (state.firstPersonMoney - state.transferMoney < 0) {
          alert(`You don't have enough money`)
-         return null }
+         return null
+      }
       if (state.firstId === '' && state.secondId === '') { return null }
       if (state.transferMoney === 0) { return null }
-      if (state.firstId === state.secondId) { return null }
+      if (state.firstId === state.secondId) {
+         setError(true)
+         return null
+      }
 
       state.firstPersonMoney = (state.firstPersonMoney - state.transferMoney) - (state.transferMoney * 0.1)
       state.secondPersonMoney = state.transferMoney + state.secondPersonMoney
@@ -64,15 +70,23 @@ const FormContainer = (props) => {
          .catch(error => console.log(error))
       alert('Your transfer has been successfully completed')
       handleGet()
+      setError(false)
    }
 
-   return <Form
-      data={state.data}
-      callFirst={callFirst}
-      callSecond={callSecond}
-      calcTransfer={calcTransfer}
-      transferMoneyChangeHandler={transferMoneyChangeHandler}
-   />
+   return (
+      <div>
+
+         <Form
+            error={error}
+            data={state.data}
+            callFirst={callFirst}
+            callSecond={callSecond}
+            calcTransfer={calcTransfer}
+            transferMoneyChangeHandler={transferMoneyChangeHandler} >
+            <code style={{ color: 'red' }}>Account number is the same</code>
+         </Form>
+      </div>
+   )
 }
 
 export default FormContainer;

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import axios from './axios'
 import './App.css';
-import Table from './Table/Table';
-import InputContainer from './Input/InputContainer';
-import FormContainer from './Form/FormContainer';
+import Table from './component/Table/Table';
+import InputContainer from './component/Input/InputContainer';
+import FormContainer from './component/Form/FormContainer';
 
 
 class App extends Component {
@@ -27,11 +27,7 @@ class App extends Component {
   }
 
 
-  checkError = (check) =>{
-    this.setState({
-      error: check
-    })
-  }
+  
 
   handleGet = () => {
     axios.get('/person.json')
@@ -49,7 +45,7 @@ class App extends Component {
     this.setState({
       firstName: event.target.value
     })
-    if(!this.state.firstName.length == 0 ){
+    if(!this.state.firstName.length === 0 ){
       this.checkError(false)
     }
   }
@@ -57,7 +53,7 @@ class App extends Component {
     this.setState({
       lastName: event.target.value
     })
-    if(!this.state.lastName.length == 0){
+    if(!this.state.lastName.length === 0){
       this.checkError(false)
     }
   }
@@ -65,7 +61,7 @@ class App extends Component {
     this.setState({
       money: parseInt(event.target.value)
     })
-    if(!this.state.money.length == 0){
+    if(!this.state.money.length === 0){
       this.checkError(false)
     }
   }
@@ -76,7 +72,6 @@ class App extends Component {
         <div className={'container'}>
           <InputContainer
             state={this.state}
-            checkError={this.checkError}
             firstNameChangeHandler={this.firstNameChangeHandler}
             lastNameChangeHandler={this.lastNameChangeHandler}
             moneyChangeHandler={this.moneyChangeHandler}
