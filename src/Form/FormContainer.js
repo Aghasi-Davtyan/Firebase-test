@@ -24,7 +24,9 @@ const FormContainer = (props) => {
    }
    let calcTransfer = async (e) => {
       e.preventDefault()
-      if (state.firstPersonMoney - state.transferMoney < 0) { return null }
+      if (state.firstPersonMoney - state.transferMoney < 0) { 
+         alert(`You don't have enough money`)
+         return null }
       if (state.firstId === '' && state.secondId === '') { return null }
       if (state.transferMoney === 0) { return null }
       if (state.firstId === state.secondId) { return null }
@@ -37,7 +39,7 @@ const FormContainer = (props) => {
             obj = {
                firstName: response.data.firstName,
                lastName: response.data.lastName,
-               money: state.firstPersonMoney,
+               money: Math.round(state.firstPersonMoney),
                accountNumber: response.data.accountNumber,
                id: state.firstId
             }
@@ -52,7 +54,7 @@ const FormContainer = (props) => {
             obj2 = {
                firstName: response.data.firstName,
                lastName: response.data.lastName,
-               money: state.secondPersonMoney,
+               money: Math.round(state.secondPersonMoney),
                accountNumber: response.data.accountNumber,
                id: state.secondId
             }
