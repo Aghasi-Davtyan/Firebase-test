@@ -27,9 +27,9 @@ class App extends Component {
   }
 
 
-  checkError = () =>{
+  checkError = (check) =>{
     this.setState({
-      error: true
+      error: check
     })
   }
 
@@ -49,16 +49,25 @@ class App extends Component {
     this.setState({
       firstName: event.target.value
     })
+    if(!this.state.firstName.length == 0 ){
+      this.checkError(false)
+    }
   }
   lastNameChangeHandler = (event) => {
     this.setState({
       lastName: event.target.value
     })
+    if(!this.state.lastName.length == 0){
+      this.checkError(false)
+    }
   }
   moneyChangeHandler = (event) => {
     this.setState({
       money: parseInt(event.target.value)
     })
+    if(!this.state.money.length == 0){
+      this.checkError(false)
+    }
   }
 
   render() {

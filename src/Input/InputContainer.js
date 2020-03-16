@@ -23,9 +23,10 @@ const InputContainer = (props) => {
          id: state.id
       }
       if (state.firstName === '' || state.lastName === '' || state.money === 0) {
-       await  checkError()
+       await  checkError(true)
          return null
       }
+      
       await axios.post('/person.json', obj)
          .then(response => console.log(response))
          .catch(error => console.log(error))
