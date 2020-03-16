@@ -8,7 +8,7 @@ const Form = (props) => {
         calcTransfer,
         callFirst,
         callSecond,
-        transferMoneyChangeHandler,} = props
+        transferMoneyChangeHandler} = props
 
     return (
         <form className={'form'} onSubmit={calcTransfer}>

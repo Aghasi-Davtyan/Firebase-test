@@ -9,8 +9,7 @@ class InputContainer extends Component {
       lastName: '',
       money: 0,
       accountNumber: 0,
-      id: ''
-   }
+      id: ''}
 
    firstNameChangeHandler = (event) => {
       this.setState({
@@ -27,7 +26,6 @@ class InputContainer extends Component {
          money: parseInt(event.target.value)
       })
    }
-
    handlePost = async (e) => {
       e.preventDefault()
       let obj = {

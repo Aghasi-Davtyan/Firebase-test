@@ -43,10 +43,8 @@ class App extends Component {
       <div className="App">
         <div className={'container'}>
           <InputContainer
-            state={this.state}
             handleGet={this.handleGet} />
           <FormContainer
-            state={this.state}
             handleGet={this.handleGet} />
           <Table
             data={this.state.data}
