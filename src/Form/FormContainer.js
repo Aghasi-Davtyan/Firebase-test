@@ -45,7 +45,9 @@ class FormContainer extends Component {
    }
    calcTransfer = async (e) => {
       e.preventDefault()
-      if (this.state.firstPersonMoney - this.state.transferMoney < 0) { return null }
+      if (this.state.firstPersonMoney - this.state.transferMoney < 0) { 
+         alert(`You don't have enough money`)
+         return null }
       if (this.state.firstId === '' && this.state.secondId === '') { return null }
       if (this.state.transferMoney === 0) { return null }
       if (this.state.firstId === this.state.secondId) { return null }
