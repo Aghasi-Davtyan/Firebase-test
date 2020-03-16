@@ -27,7 +27,8 @@ class App extends Component {
     this.handleGet()
   }
 
-  handlePost = async () => {
+  handlePost = async (e) => {
+    e.preventDefault()
     let obj = {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
@@ -56,6 +57,11 @@ class App extends Component {
           this.setState({ data })
         }
       })
+  }
+
+  handleDelete = async (personID) => {
+   await axios.delete(`/person/${personID}.json`)
+    this.handleGet()
   }
 
   firstNameChangeHandler = (event) => {
@@ -168,7 +174,7 @@ class App extends Component {
                   firstNameChangeHandler={this.firstNameChangeHandler}
                   lastNameChangeHandler={this.lastNameChangeHandler}
                   moneyChangeHandler={this.moneyChangeHandler}
-                  money={this.state.money}
+                  // money={this.state.money}
                   handlePost={this.handlePost}
             />
           <Form data={this.state.data}
@@ -176,7 +182,8 @@ class App extends Component {
             callSecond={this.callSecond}
             transferMoneyChangeHandler={this.transferMoneyChangeHandler}
             calcTransfer={this.calcTransfer}/>
-          <Table data={this.state.data} />
+          <Table data={this.state.data}
+          handleDelete={this.handleDelete} />
         </div>
       </div>
     );

@@ -30,7 +30,7 @@ const Form = (props) => {
             </div>
             <div>Amount of money</div>
             <div>
-                <input type='number' onChange={transferMoneyChangeHandler} />
+                <input type='number' onChange={transferMoneyChangeHandler} required={true}/>
             </div>
             <p>10% for each transfer</p>
             <button className={'button1'} type='submit' ><span>Send</span></button>

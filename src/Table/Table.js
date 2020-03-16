@@ -3,7 +3,7 @@ import './Table.css'
 
 const Table = (props) => {
 
-    let { data } = props
+    let { data ,handleDelete} = props
 
     return (
         <table className={'table'}>
@@ -14,8 +14,8 @@ const Table = (props) => {
                     <th>Last Name</th>
                     <th>Money</th>
                     <th>Account Number</th>
-                    <th></th>
                     <th>ID</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -26,8 +26,8 @@ const Table = (props) => {
                         <td>{person.lastName} </td>
                         <td>{person.money + '$'} </td>
                         <td>{person.accountNumber} </td>
-                        <td> </td>
                         <td>{person.id}</td>
+                        <td><button onClick={()=>handleDelete(person.id)}>delete</button> </td>
                     </tr>
                 })}
             </tbody>
