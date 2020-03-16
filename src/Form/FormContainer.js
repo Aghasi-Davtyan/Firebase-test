@@ -12,7 +12,8 @@ class FormContainer extends Component {
       id: '',
       firstPersonMoney: 0,
       secondPersonMoney: 0,
-      transferMoney: 0}
+      transferMoney: 0,
+   }
 
    componentDidMount(){
       this.handleGet()
@@ -33,21 +34,19 @@ class FormContainer extends Component {
    callFirst = async (e) => {
      await this.setState({firstId:e.target.value})
       let firstUser = this.state.data.find(el => el.id === this.state.firstId)
-      this.setState({firstPersonMoney: parseInt(firstUser.money)})
+      this.setState({firstPersonMoney:parseInt(firstUser.money)})
    }
    callSecond = async (e) => {
     await  this.setState({secondId:e.target.value})
       let secondUser = this.state.data.find(el => el.id === this.state.secondId)
-      this.setState({ secondPersonMoney : parseInt(secondUser.money)})
+      this.setState({ secondPersonMoney :parseInt(secondUser.money)})
    }
    transferMoneyChangeHandler = (event) => {
      this.setState({transferMoney: parseInt(event.target.value)})
    }
    calcTransfer = async (e) => {
       e.preventDefault()
-      if (this.state.firstPersonMoney - this.state.transferMoney < 0) { 
-         alert(`You don't have enough money`)
-         return null }
+      if (this.state.firstPersonMoney - this.state.transferMoney < 0) { return null }
       if (this.state.firstId === '' && this.state.secondId === '') { return null }
       if (this.state.transferMoney === 0) { return null }
       if (this.state.firstId === this.state.secondId) { return null }
@@ -61,7 +60,7 @@ class FormContainer extends Component {
             obj = {
                firstName: response.data.firstName,
                lastName: response.data.lastName,
-               money: Math.round(this.state.firstPersonMoney),
+               money: this.state.firstPersonMoney,
                accountNumber: response.data.accountNumber,
                id: this.state.firstId
             }
@@ -76,7 +75,7 @@ class FormContainer extends Component {
             obj2 = {
                firstName: response.data.firstName,
                lastName: response.data.lastName,
-               money: Math.round(this.state.secondPersonMoney),
+               money: this.state.secondPersonMoney,
                accountNumber: response.data.accountNumber,
                id: this.state.secondId
             }

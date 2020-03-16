@@ -5,12 +5,14 @@ import Input from './Input';
 
 class InputContainer extends Component {
    state = {
+      data: [],
       firstName: '',
       lastName: '',
       money: 0,
       accountNumber: 0,
       id: ''}
 
+   
    firstNameChangeHandler = (event) => {
       this.setState({
          firstName: event.target.value
