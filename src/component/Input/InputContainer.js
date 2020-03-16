@@ -32,7 +32,7 @@ const InputContainer = (props) => {
          .then(response => console.log(response))
          .catch(error => console.log(error))
       handleGet()
-
+      
       state.firstName = ''
       state.lastName = ''
       setError(false)

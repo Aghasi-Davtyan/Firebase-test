@@ -20,7 +20,7 @@ const Form = (props) => {
                     {data.map((person) => {
                         return <option
                             key={person.id}
-                            value={person.id} 
+                            value={person.id}
                             label={person.firstName} />
                     })}
                 </select>
@@ -30,7 +30,7 @@ const Form = (props) => {
                     {data.map((person) => {
                         return <option
                             key={person.id}
-                            value={person.id} 
+                            value={person.id}
                             label={person.firstName} />
                     })}
                 </select>
@@ -40,7 +40,7 @@ const Form = (props) => {
                 <input
                     type='number'
                     onChange={transferMoneyChangeHandler}
-                    required/>
+                    required />
             </div>
             {(error) ? props.children : <p>10% for each transfer</p>}
             <div><button className={'button1'} type='submit' ><span>Send</span></button></div>

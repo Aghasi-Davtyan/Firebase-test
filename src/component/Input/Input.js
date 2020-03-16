@@ -13,25 +13,25 @@ const Input = (props) => {
         handlePost } = props
 
     return (
-            <form onSubmit={handlePost}>
+        <form onSubmit={handlePost}>
+            <input
+                type='text'
+                placeholder='First Name'
+                value={firstName}
+                onChange={firstNameChangeHandler} />
+            <input
+                type='text'
+                placeholder='Last Name'
+                value={lastName}
+                onChange={lastNameChangeHandler} />
+            <div>
+                <label>Money</label>
                 <input
-                    type='text'
-                    placeholder='First Name'
-                    value={firstName}
-                    onChange={firstNameChangeHandler} />
-                <input
-                    type='text'
-                    placeholder='Last Name'
-                    value={lastName}
-                    onChange={lastNameChangeHandler} />
-                <div>
-                    <label>Money</label>
-                    <input
-                        type='number'
-                        onChange={moneyChangeHandler} />
-                </div>
-                <button className={'btnPost'}><span>Add</span></button>
-            </form>
+                    type='number'
+                    onChange={moneyChangeHandler} />
+            </div>
+            <button className={'btnPost'}><span>Add</span></button>
+        </form>
     );
 }
 
