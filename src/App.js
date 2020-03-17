@@ -24,12 +24,10 @@ class App extends Component {
     error: false,
     modalVisible: false
   }
+
   componentDidMount() {
     this.handleGet()
   }
-
-
-  
 
   handleGet = () => {
     axios.get('/person.json')

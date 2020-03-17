@@ -1,30 +1,32 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Component } from 'react';
 import './Form.css';
 import axios from '../../axios'
 import Form from './Form';
 
-const FormContainer = (props) => {
+class FormContainer1 extends Component {
 
+   componentDidMount(){
+      this.props.handleGet()
+   }
+
+render(){
    let { state,
       handleGet,
       showModal
-   } = props
+   } = this.props
 
-   let [error, setError] = useState(false)
-   
-   let callFirst = async (e) => {
-      state.firstId = e.target.value
-      let firstUser = state.data.find(el => el.id === state.firstId)
-      if(firstUser === undefined){return null}
-      console.log(firstUser)
-      state.firstPersonMoney = parseInt(firstUser.money)
-   }
+   // let [error, setError] = useState(false)
+ 
+
    let callSecond = async (e) => {
       state.secondId = e.target.value
       let secondUser = state.data.find(el => el.id === state.secondId)
-      if(secondUser === undefined){return null}
-      console.log(secondUser)
       state.secondPersonMoney = parseInt(secondUser.money)
+   }
+   let callFirst = async (e) => {
+      state.firstId = e.target.value
+      let firstUser = state.data.find(el => el.id === state.firstId)
+      state.firstPersonMoney = parseInt(firstUser.money)
    }
    let transferMoneyChangeHandler = (event) => {
       state.transferMoney = parseInt(event.target.value)
@@ -38,7 +40,7 @@ const FormContainer = (props) => {
       if (state.firstId === '' && state.secondId === '') { return null }
       if (state.transferMoney === 0) { return null }
       if (state.firstId === state.secondId) {
-         setError(true)
+         // setError(true)
          return null
       }
 
@@ -74,7 +76,7 @@ const FormContainer = (props) => {
          .then(response => console.log(response))
          .catch(error => console.log(error))
       handleGet()
-      setError(false)
+      // setError(false)
       showModal(true)
    }
 
@@ -82,7 +84,7 @@ const FormContainer = (props) => {
       <div>
 
          <Form
-            error={error}
+            // error={error}
             data={state.data}
             callFirst={callFirst}
             callSecond={callSecond}
@@ -93,5 +95,6 @@ const FormContainer = (props) => {
       </div>
    )
 }
+}
 
-export default FormContainer;
+export default FormContainer1;

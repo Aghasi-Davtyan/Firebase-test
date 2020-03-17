@@ -11,6 +11,7 @@ const Form = (props) => {
         callSecond,
         transferMoneyChangeHandler, } = props
 
+
     return (
         <form className={'form'} onSubmit={calcTransfer}>
             <div>Transfer</div>
