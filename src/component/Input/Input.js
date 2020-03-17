@@ -28,7 +28,7 @@ const Input = (props) => {
                 <input
                     type='number'
                     onChange={moneyChangeHandler}
-                    placeholder='Money' />
+                    placeholder='Amount of money' />
             </div>
             <button className={'btnPost'}><span>Add</span></button>
         </form>
