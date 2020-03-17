@@ -2,10 +2,8 @@ table {
     border-collapse: collapse;
     width: 100%;
     display: block;
-    height: 350px;
+    height: 430px;
     border-radius: 10px;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-
 }
 
 th,
@@ -17,11 +15,12 @@ td {
 
 th {
     background-color: #4CAF50;
-    color: white;   
+    color: white;
 }
 
 .table {
-    margin: 10px auto;
+    margin: 10px 15px;
+    
 }
 
 .deleteBtn {
