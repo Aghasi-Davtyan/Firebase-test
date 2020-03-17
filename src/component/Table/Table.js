@@ -13,7 +13,7 @@ const Table = (props) => {
 
    return (
 
-      <table className={'table'} >
+      <table className={'table'}>
          <thead>
             <tr>
                <th>№</th>
@@ -22,17 +22,17 @@ const Table = (props) => {
                <th>Money</th>
                <th>Account Number</th>
                <th>ID</th>
-               <th style={{borderTopRightRadius:'5px'}}></th>
+               <th style={{ borderTopRightRadius: '5px' }}></th>
             </tr>
          </thead>
          <tbody >
             {data.map((person, i) => {
                return <tr key={person.accountNumber}>
                   <td>{i + 1 + '.'}</td>
-                  <td>{person.firstName} </td>
-                  <td>{person.lastName} </td>
-                  <td>{person.money + '$'} </td>
-                  <td>{person.accountNumber} </td>
+                  <td>{person.firstName}</td>
+                  <td>{person.lastName}</td>
+                  <td>{person.money + '$'}</td>
+                  <td>{person.accountNumber}</td>
                   <td>{person.id}</td>
                   <td><button
                      className={'deleteBtn'}

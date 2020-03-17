@@ -25,10 +25,10 @@ const Input = (props) => {
                 value={lastName}
                 onChange={lastNameChangeHandler} />
             <div>
-                <label>Money</label>
                 <input
                     type='number'
-                    onChange={moneyChangeHandler} />
+                    onChange={moneyChangeHandler}
+                    placeholder='Money' />
             </div>
             <button className={'btnPost'}><span>Add</span></button>
         </form>

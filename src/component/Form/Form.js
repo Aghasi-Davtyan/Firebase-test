@@ -11,10 +11,9 @@ const Form = (props) => {
         callSecond,
         transferMoneyChangeHandler, } = props
 
-
     return (
         <form className={'form'} onSubmit={calcTransfer}>
-            <div>Transfer</div>
+            <span>Transfer</span>
             <div>
                 <select onChange={callFirst} required >
                     <option />
@@ -36,14 +35,15 @@ const Form = (props) => {
                     })}
                 </select>
             </div>
-            <div>Amount of money</div>
             <div>
                 <input
+                style={{textAlign:'center'}}
                     type='number'
                     onChange={transferMoneyChangeHandler}
+                    placeholder="Amount of money"
                     required />
             </div>
-            {(error) ? props.children : <p>10% for each transfer</p>}
+            {(error) ? props.children : <p>10 <code>%</code> for each transfer</p>}
             <div><button className={'button1'} type='submit' ><span>Send</span></button></div>
         </form>
     );

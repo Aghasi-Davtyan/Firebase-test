@@ -5,6 +5,7 @@ import Table from './component/Table/Table';
 import InputContainer from './component/Input/InputContainer';
 import FormContainer from './component/Form/FormContainer';
 import Modal from './component/Modal/Modal';
+import Clock from './component/Clock/Clock';
 
 
 class App extends Component {
@@ -69,11 +70,11 @@ class App extends Component {
   showModal = (check) => this.setState(()=>({modalVisible: check}))
   hideModal = () => this.setState(()=>({modalVisible: false}))
 
-
   render() {
     return (
       <div className="App">
         <div className={'container'}>
+          <Clock />
           <InputContainer
             state={this.state}
             firstNameChangeHandler={this.firstNameChangeHandler}
@@ -87,7 +88,6 @@ class App extends Component {
           <Table
             data={this.state.data}
             handleGet={this.handleGet}/>
-
            {this.state.modalVisible &&
             <Modal hideModal={this.hideModal}>
               <code>Your transfer has been successfully completed</code>

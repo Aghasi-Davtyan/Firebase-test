@@ -2,12 +2,16 @@
   text-align: center;
   display: flex;
   /* height: 100vh; */
+  background-color: rgb(10, 10, 10, 0.3);
+  overflow: hidden;
+  color: rgb(243, 230, 207);
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 .container {
   border-radius: 5px;
   width: 800px;
-  height: 700px;
+  height: 100vh;
   margin: auto;
   align-items: center;
   justify-content: center;
