@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './Form.css';
 import axios from '../../axios'
 import Form from './Form';
@@ -11,19 +11,17 @@ const FormContainer = (props) => {
    } = props
 
    let [error, setError] = useState(false)
-   
+
    let callFirst = async (e) => {
       state.firstId = e.target.value
       let firstUser = state.data.find(el => el.id === state.firstId)
-      if(firstUser === undefined){return null}
-      console.log(firstUser)
+      if (firstUser === undefined) { return null }
       state.firstPersonMoney = parseInt(firstUser.money)
    }
    let callSecond = async (e) => {
       state.secondId = e.target.value
       let secondUser = state.data.find(el => el.id === state.secondId)
-      if(secondUser === undefined){return null}
-      console.log(secondUser)
+      if (secondUser === undefined) { return null }
       state.secondPersonMoney = parseInt(secondUser.money)
    }
    let transferMoneyChangeHandler = (event) => {
