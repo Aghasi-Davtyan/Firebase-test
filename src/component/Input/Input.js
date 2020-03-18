@@ -27,6 +27,7 @@ const Input = (props) => {
             <div>
                 <input
                     type='number'
+                    min="0"
                     onChange={moneyChangeHandler}
                     placeholder='Amount of money' />
             </div>
