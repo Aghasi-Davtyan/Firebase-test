@@ -13,7 +13,7 @@ const Form = (props) => {
 
     return (
         <form className={'form'} onSubmit={calcTransfer}>
-            <span>Transfer</span>
+            <p>Transfer</p>
             <div>
                 <select onChange={callFirst} required >
                     <option />

@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import './Form.css';
 import axios from '../../axios'
 import Form from './Form';
+import Loading from '../Loading/Loading';
 
 const FormContainer = (props) => {
 
    let { state, handleGet, showModal } = props
    let [error, setError] = useState(false)
+   let [loading, setLoading] = useState(false)
 
    let callFirst = async (e) => {
       state.firstId = e.target.value
@@ -25,11 +27,12 @@ const FormContainer = (props) => {
    }
    let calcTransfer = async (e) => {
       e.preventDefault()
+      setLoading(true)
       if (state.firstId === state.secondId) {
          setError(true)
          return null
       }
-      if (state.firstPersonMoney - state.transferMoney - state.firstPersonMoney * 0.1  < 0) {
+      if (state.firstPersonMoney - state.transferMoney - state.firstPersonMoney * 0.1 < 0) {
          alert(`You don't have enough money`)
          return null
       }
@@ -73,18 +76,23 @@ const FormContainer = (props) => {
          .catch(error => console.log(error))
       handleGet()
       setError(false)
+      setLoading(false)
       showModal(true)
    }
 
-   return <Form
-      error={error}
-      data={state.data}
-      callFirst={callFirst}
-      callSecond={callSecond}
-      calcTransfer={calcTransfer}
-      transferMoneyChangeHandler={transferMoneyChangeHandler} >
-      <code style={{ color: 'red' }}>Account number is the same</code>
-   </Form>
+   return (
+      <div>
+         {loading ? (<Loading />) : (<Form
+            error={error}
+            data={state.data}
+            callFirst={callFirst}
+            callSecond={callSecond}
+            calcTransfer={calcTransfer}
+            transferMoneyChangeHandler={transferMoneyChangeHandler} >
+            <code style={{ color: 'red' }}>Account number is the same</code>
+         </Form>)}
+      </div>
+   )
 }
 
 export default FormContainer;
