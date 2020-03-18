@@ -32,7 +32,7 @@ class App extends Component {
 
   tick = () => {
     return new Date().toLocaleTimeString()
-}
+  }
 
   handleGet = () => {
     axios.get('/person.json')

@@ -25,12 +25,11 @@ const FormContainer = (props) => {
    }
    let calcTransfer = async (e) => {
       e.preventDefault()
-      handleGet()
       if (state.firstId === state.secondId) {
          setError(true)
          return null
       }
-      if (state.firstPersonMoney - state.transferMoney - state.transferMoney * 0.1 < 0) {
+      if (state.firstPersonMoney - state.transferMoney - state.transferMoney * 0.1  < 0) {
          alert(`You don't have enough money`)
          return null
       }
