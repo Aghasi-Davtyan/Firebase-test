@@ -46,7 +46,7 @@ class App extends Component {
     this.setState({
       firstName: event.target.value
     })
-    if(!this.state.firstName.length === 0 ){
+    if (!this.state.firstName.length === 0) {
       this.checkError(false)
     }
   }
@@ -54,7 +54,7 @@ class App extends Component {
     this.setState({
       lastName: event.target.value
     })
-    if(!this.state.lastName.length === 0){
+    if (!this.state.lastName.length === 0) {
       this.checkError(false)
     }
   }
@@ -62,13 +62,13 @@ class App extends Component {
     this.setState({
       money: parseInt(event.target.value)
     })
-    if(!this.state.money.length === 0){
+    if (!this.state.money.length === 0) {
       this.checkError(false)
     }
   }
 
-  showModal = (check) => this.setState(()=>({modalVisible: check}))
-  hideModal = () => this.setState(()=>({modalVisible: false}))
+  showModal = (check) => this.setState(() => ({ modalVisible: check }))
+  hideModal = () => this.setState(() => ({ modalVisible: false }))
 
   render() {
     return (
@@ -82,17 +82,17 @@ class App extends Component {
             moneyChangeHandler={this.moneyChangeHandler}
             handleGet={this.handleGet} />
           <FormContainer
-          showModal={this.showModal}
+            showModal={this.showModal}
             state={this.state}
-            handleGet={this.handleGet}/>
+            handleGet={this.handleGet} />
           <Table
             data={this.state.data}
-            handleGet={this.handleGet}/>
-           {this.state.modalVisible &&
+            handleGet={this.handleGet} />
+          {this.state.modalVisible &&
             <Modal hideModal={this.hideModal}>
               <code>Your transfer has been successfully completed</code>
             </Modal>
-            }
+          }
         </div>
       </div>
     );
