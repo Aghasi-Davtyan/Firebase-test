@@ -27,7 +27,7 @@ const FormContainer = (props) => {
    }
    let calcTransfer = async (e) => {
       e.preventDefault()
-      setLoading(true)
+
       if (state.firstId === state.secondId) {
          setError(true)
          return null
@@ -45,6 +45,7 @@ const FormContainer = (props) => {
 
       state.firstPersonMoney = (state.firstPersonMoney - state.transferMoney) - (state.transferMoney * 0.1)
       state.secondPersonMoney = state.transferMoney + state.secondPersonMoney
+      setLoading(true)
       let obj
       await axios.get(`/person/${state.firstId}.json`)
          .then(response => {
@@ -57,7 +58,6 @@ const FormContainer = (props) => {
             }
          })
       await axios.put(`/person/${state.firstId}.json`, obj)
-         .then(response => console.log(response))
          .catch(error => console.log(error))
 
       let obj2
@@ -72,7 +72,6 @@ const FormContainer = (props) => {
             }
          })
       await axios.put(`/person/${state.secondId}.json`, obj2)
-         .then(response => console.log(response))
          .catch(error => console.log(error))
       handleGet()
       setError(false)

@@ -10,7 +10,7 @@ th,
 td {
     text-align: center;
     padding: 8px;
-    
+
 }
 
 th {
@@ -20,7 +20,7 @@ th {
 
 .table {
     margin: 10px 30px;
-    
+
 }
 
 .deleteBtn {
@@ -41,4 +41,3 @@ th {
 ::-webkit-scrollbar {
     border-radius: 10px;
 }
-  

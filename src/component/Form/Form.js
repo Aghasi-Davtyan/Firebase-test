@@ -37,7 +37,7 @@ const Form = (props) => {
             </div>
             <div>
                 <input
-                style={{textAlign:'center'}}
+                    style={{ textAlign: 'center' }}
                     type='number'
                     min="0"
                     onChange={transferMoneyChangeHandler}
