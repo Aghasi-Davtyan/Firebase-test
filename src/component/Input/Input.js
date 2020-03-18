@@ -29,7 +29,8 @@ const Input = (props) => {
                     type='number'
                     min="0"
                     onChange={moneyChangeHandler}
-                    placeholder='Amount of money' />
+                    placeholder='Amount of money'
+                    max='999999999999999' />
             </div>
             <button className={'btnPost'}><span>Add</span></button>
         </form>

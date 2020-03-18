@@ -40,6 +40,7 @@ const Form = (props) => {
                     style={{ textAlign: 'center' }}
                     type='number'
                     min="0"
+                    max='999999999999999'
                     onChange={transferMoneyChangeHandler}
                     placeholder="Amount of money"
                     required />

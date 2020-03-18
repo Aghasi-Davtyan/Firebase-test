@@ -1,16 +1,17 @@
 table {
     border-collapse: collapse;
-    width: 100%;
     display: block;
-    height: 430px;
+    position: fixed;
+    height: 380px;
     border-radius: 10px;
+    background-color: rgb(0,0,0, 0.2);
+    margin-left: 10px;
 }
 
 th,
 td {
     text-align: center;
     padding: 8px;
-
 }
 
 th {
@@ -20,7 +21,6 @@ th {
 
 .table {
     margin: 10px 30px;
-
 }
 
 .deleteBtn {
@@ -39,5 +39,7 @@ th {
 }
 
 ::-webkit-scrollbar {
-    border-radius: 10px;
+    display: none;
+    overflow: hidden;
 }
+
