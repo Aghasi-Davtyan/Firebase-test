@@ -30,6 +30,10 @@ class App extends Component {
     this.handleGet()
   }
 
+  tick = () => {
+    return new Date().toLocaleTimeString()
+}
+
   handleGet = () => {
     axios.get('/person.json')
       .then(response => {
@@ -91,6 +95,7 @@ class App extends Component {
           {this.state.modalVisible &&
             <Modal hideModal={this.hideModal}>
               <code>Your transfer has been successfully completed</code>
+              <p>{this.tick()}</p>
             </Modal>
           }
         </div>
