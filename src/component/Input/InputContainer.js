@@ -27,15 +27,32 @@ const InputContainer = (props) => {
          await setError(true)
          return null
       }
-
+      let id ;
       await axios.post('/person.json', obj)
-         .then(response => console.log(response))
+         .then(response => id = response.data.name)
          .catch(error => console.log(error))
-      handleGet()
+      
       
       state.firstName = ''
       state.lastName = ''
       setError(false)
+
+      let newUser;
+    await  axios.get(`/person/${id}.json`)
+      .then(response => {
+         newUser = {
+         firstName: response.data.firstName,
+         lastName: response.data.lastName,
+         money: response.data.money,
+         accountNumber: response.data.accountNumber,
+         id}
+      })
+
+      await axios.put(`/person/${id}.json`, newUser)
+      .then(response => console.log(response))
+      .catch(error => console.log(error))
+      handleGet()
+
    }
    return (
       <div>
