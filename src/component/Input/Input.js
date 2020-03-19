@@ -32,7 +32,7 @@ const Input = (props) => {
                     placeholder='Amount of money'
                     max='999999999999999' />
             </div>
-            <button className={'btnPost'}><span>Add</span></button>
+            <button className={'btnAdd'}><span>Add</span></button>
         </form>
     );
 }

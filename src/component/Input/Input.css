@@ -1,4 +1,4 @@
-.btnPost {
+.btnAdd {
   display: inline-block;
   border-radius: 4px;
   background-color: #4CAF50;
@@ -13,7 +13,7 @@
   outline: none;
 }
 
-.btnPost:hover {
+.btnAdd:hover {
   transform: scale(.98);
 }
 

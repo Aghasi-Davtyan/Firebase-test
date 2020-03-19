@@ -6,7 +6,7 @@ let Modal = (props) => {
    const { children } = props
 
    return (
-      <div className='modal'>
+      <div className='modal'  onClick={props.hideModal}>
          <div className='inner'>
             <div className='close' onClick={props.hideModal}>+</div>
             {children}

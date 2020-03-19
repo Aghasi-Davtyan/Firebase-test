@@ -21,3 +21,29 @@
   overflow: scroll;
 }
 
+
+.logOutBtn{
+  display: inline-block;
+  border-radius: 2px;
+  background-color: #4CAF50;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  padding: 6px;
+  width: 80px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+  outline: none;
+}
+
+
+.logOutBtn:hover{
+  transform: scale(.99);
+  background-color: rgb(76, 175, 80, 0.7);
+}
+
+.profilPic {
+  height: 30px;
+  border-radius: 50%;
+}

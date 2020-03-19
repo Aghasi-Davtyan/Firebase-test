@@ -38,6 +38,7 @@ const InputContainer = (props) => {
 
       state.firstName = ''
       state.lastName = ''
+      state.money = 0
       setError(false)
 
       let newUser;
