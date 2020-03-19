@@ -34,12 +34,7 @@ class App extends Component {
       this.setState({ isSignedIn: !!user })
     })
   }
-
-
-  tick = () => {
-    return new Date().toLocaleTimeString()
-  }
-
+  
   handleGet = () => {
     axios.get('/person.json')
       .then(response => {
@@ -51,6 +46,9 @@ class App extends Component {
         }
       })
   }
+
+
+
 
   firstNameChangeHandler = (event) => {
     this.setState({
@@ -79,7 +77,7 @@ class App extends Component {
 
   showModal = (check) => this.setState(() => ({ modalVisible: check }))
   hideModal = () => this.setState(() => ({ modalVisible: false}))
-
+  tick = () => { return new Date().toLocaleTimeString()}
 
   render() {
 
