@@ -4,10 +4,6 @@ import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 
 class LogIn extends Component {
 
-    state = {
-        isSignedIn: false,
-    }
-
 
     uiConfig = {
         signInOptions: [
@@ -21,12 +17,9 @@ class LogIn extends Component {
 
         return (
             <div>
-                {this.state.isSignedIn ? (
-                    null
-                ) : <StyledFirebaseAuth
-                        uiConfig={this.uiConfig}
-                        firebaseAuth={firebase.auth()} />
-                }
+                <StyledFirebaseAuth
+                    uiConfig={this.uiConfig}
+                    firebaseAuth={firebase.auth()} />
             </div>
         );
     }
