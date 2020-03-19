@@ -78,7 +78,7 @@ class App extends Component {
   }
 
   showModal = (check) => this.setState(() => ({ modalVisible: check }))
-  hideModal = () => this.setState(() => ({ modalVisible: false, modalLogIn: false }))
+  hideModal = () => this.setState(() => ({ modalVisible: false}))
 
 
   render() {
