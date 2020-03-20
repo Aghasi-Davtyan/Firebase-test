@@ -15,7 +15,7 @@ td {
 }
 
 th {
-    background-color: #4CAF50;
+    background-color: rgb(76, 175, 80);
     color: white;
 }
 
@@ -38,8 +38,27 @@ th {
 
 }
 
+
+
 ::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgb(76, 175, 80, 0.3); 
+    border-radius: 15px;
+}
+ 
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgb(76, 175, 80, 1); 
+}
+
+::-webkit-scrollbar-corner {
     display: none;
-    overflow: hidden;
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+	background: rgba(255,0,0,0.4); 
 }
 
