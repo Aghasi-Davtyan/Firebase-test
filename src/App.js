@@ -10,6 +10,8 @@ import firebase from './firebase';
 import LogIn from './component/Login/Login';
 
 
+
+
 class App extends Component {
 
   state = {
@@ -34,7 +36,7 @@ class App extends Component {
       this.setState({ isSignedIn: !!user })
     })
   }
-  
+
   handleGet = () => {
     axios.get('/person.json')
       .then(response => {
@@ -47,32 +49,20 @@ class App extends Component {
       })
   }
 
-
-
-
   firstNameChangeHandler = (event) => {
     this.setState({
       firstName: event.target.value
     })
-    if (!this.state.firstName.length === 0) {
-      this.checkError(false)
-    }
   }
   lastNameChangeHandler = (event) => {
     this.setState({
       lastName: event.target.value
     })
-    if (!this.state.lastName.length === 0) {
-      this.checkError(false)
-    }
   }
   moneyChangeHandler = (event) => {
     this.setState({
       money: parseInt(event.target.value)
     })
-    if (!this.state.money.length === 0) {
-      this.checkError(false)
-    }
   }
 
   showModal = (check) => this.setState(() => ({ modalVisible: check }))
